@@ -1,17 +1,19 @@
 package Tests;
 
+import PODJO.Todos;
 import Utils.ApiWrapper;
+import Utils.ConfigurationReader;
 import Utils.TestDataHelper;
 import io.restassured.response.Response;
-import org.example.Todos;
 import org.junit.jupiter.api.Test;
 
 import static Utils.ApiWrapper.*;
 import static io.restassured.RestAssured.given;
 import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInClasspath;
 import static org.hamcrest.Matchers.hasSize;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class TodosTest extends BaseHomeWorkTest {
+public class TodosTest extends BaseTestCase {
 
     @Test
     public void schemeTodosValidationTest() {
@@ -19,9 +21,9 @@ public class TodosTest extends BaseHomeWorkTest {
 
         sendGetRequest(
                 given().pathParams("id", userId),
-                getConfig("objectPathV2")
-                        + getConfig("objectIdPath")
-                        + getConfig("objectToDosPostPath")
+                ConfigurationReader.get("apiVersion")
+                        + ConfigurationReader.get("objectIdPath")
+                        + ConfigurationReader.get("objectToDosPostPath")
         )
                 .assertThat()
                 .body(matchesJsonSchemaInClasspath("todos-schema.json"));
@@ -35,8 +37,8 @@ public class TodosTest extends BaseHomeWorkTest {
         sendGetRequest(
                 given().pathParams("page",
                         page, "perPage", perPage),
-                getConfig("objectPathV2")
-                        + getConfig("objectToDosPostPath")
+                ConfigurationReader.get("apiVersion")
+                        + ConfigurationReader.get("objectToDosPostPath")
                         + "?page={page}&per_page={perPage}"
         )
                 .assertThat()
@@ -53,9 +55,9 @@ public class TodosTest extends BaseHomeWorkTest {
         Todos actualUsersTodo =
                 ApiWrapper.sendPostRequest(
                         given().pathParams("id", userId),
-                        getConfig("objectPathV2")
-                                + getConfig("objectIdPath")
-                                + getConfig("objectToDosPostPath"),
+                        ConfigurationReader.get("apiVersion")
+                                + ConfigurationReader.get("objectIdPath")
+                                + ConfigurationReader.get("objectToDosPostPath"),
                         newUsersTodo,
                         Todos.class
                 );
@@ -69,8 +71,8 @@ public class TodosTest extends BaseHomeWorkTest {
 
         deleteRequest(
                 given().pathParams("id", userId),
-                getConfig("objectPathV2")
-                        + getConfig("objectToDosPostIdPath")
+                ConfigurationReader.get("apiVersion")
+                        + ConfigurationReader.get("objectToDosPostIdPath")
         );
     }
 
@@ -85,8 +87,8 @@ public class TodosTest extends BaseHomeWorkTest {
                 given().pathParams("id", userId),
                 nameCheckedField,
                 valueCheckedField,
-                getConfig("objectPathV2")
-                        + getConfig("objectToDosPostIdPath")
+                ConfigurationReader.get("objectPathV2")
+                        + ConfigurationReader.get("objectToDosPostIdPath")
         );
     }
 
@@ -104,8 +106,8 @@ public class TodosTest extends BaseHomeWorkTest {
         Todos actualTodos =
                 sendPutRequest(
                         given().pathParams("id", id),
-                        getConfig("objectPathV2")
-                                + getConfig("objectToDosPostIdPath"),
+                        ConfigurationReader.get("objectPathV2")
+                                + ConfigurationReader.get("objectToDosPostIdPath"),
                         newTodos,
                         Todos.class
                 );

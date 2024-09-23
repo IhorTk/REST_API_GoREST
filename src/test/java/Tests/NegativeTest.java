@@ -1,5 +1,8 @@
 package Tests;
 
+import PODJO.User;
+import Utils.AuthenticationFilter;
+import Utils.ConfigurationReader;
 import Utils.TestDataHelper;
 import io.restassured.http.ContentType;
 import org.example.AuthenticationFilter;
@@ -13,7 +16,7 @@ import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.equalTo;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class NegativeTest extends BaseHomeWorkTest {
+public class NegativeTest extends BaseTestCase {
 
     @ParameterizedTest
     @ValueSource(strings = {"  ", ""})
@@ -28,8 +31,8 @@ public class NegativeTest extends BaseHomeWorkTest {
                     .body("{ \"" + nameCheckedField + "\": \"" + input + "\" }")
                     .contentType(ContentType.JSON)
                     .when()
-                    .patch(getConfig("objectPathV2")
-                            + getConfig("objectIdPath"))
+                    .patch(ConfigurationReader.get("apiVersion")
+                            + ConfigurationReader.get("objectIdPath"))
                     .then()
                     .statusCode(422)
                     .contentType(ContentType.JSON)
@@ -55,8 +58,8 @@ public class NegativeTest extends BaseHomeWorkTest {
                 .body("{ \"" + nameCheckedField + "\": \"" + input + "\" }")
                 .contentType(ContentType.JSON)
                 .when()
-                .patch(getConfig("objectPathV2")
-                        + getConfig("objectIdPath"))
+                .patch(ConfigurationReader.get("apiVersion")
+                        + ConfigurationReader.get("objectIdPath"))
                 .then()
                 .statusCode(422)
                 .contentType(ContentType.JSON)
@@ -77,8 +80,8 @@ public class NegativeTest extends BaseHomeWorkTest {
                 .body("{ \"" + nameCheckedField + "\": \"" + input + "\" }")
                 .contentType(ContentType.JSON)
                 .when()
-                .patch(getConfig("objectPathV2")
-                        + getConfig("objectIdPath"))
+                .patch(ConfigurationReader.get("apiVersion")
+                        + ConfigurationReader.get("objectIdPath"))
                 .then()
                 .statusCode(422)
                 .contentType(ContentType.JSON)
@@ -101,8 +104,8 @@ public class NegativeTest extends BaseHomeWorkTest {
                 .body("{ \"" + nameCheckedField + "\": \"" + valueCheckedField + "\" }")
                 .contentType(ContentType.JSON)
                 .when()
-                .patch(getConfig("objectPathV2")
-                        + getConfig("objectIdPath"))
+                .patch(ConfigurationReader.get("apiVersion")
+                        + ConfigurationReader.get("objectIdPath"))
                 .then()
                 .statusCode(422)
                 .contentType(ContentType.JSON)
@@ -114,14 +117,14 @@ public class NegativeTest extends BaseHomeWorkTest {
 
     @Test
     public void newUserCreationWithoutToken() {
-        NewUser newUser = TestDataHelper.createUser();
+        User newUser = TestDataHelper.createUser();
 
         given()
                 .contentType(ContentType.JSON)
                 .body(newUser)
                 .when()
-                .post(getConfig("objectPathV2")
-                        + getConfig("endPointUsers"))
+                .post(ConfigurationReader.get("apiVersion")
+                        + ConfigurationReader.get("endPointUsers"))
                 .then()
                 .assertThat()
                 .statusCode(401)
@@ -132,15 +135,15 @@ public class NegativeTest extends BaseHomeWorkTest {
 
     @Test
     public void newUserCreationNullName() {
-        NewUser newUser = TestDataHelper.createUser();
+        User newUser = TestDataHelper.createUser();
         newUser.setName(null);
         given()
                 .filter(new AuthenticationFilter(TOKEN))
                 .contentType(ContentType.JSON)
                 .body(newUser)
                 .when()
-                .post(getConfig("objectPathV2")
-                        + getConfig("endPointUsers"))
+                .post(ConfigurationReader.get("apiVersion")
+                        + ConfigurationReader.get("endPointUsers"))
                 .then()
                 .assertThat()
                 .statusCode(422)

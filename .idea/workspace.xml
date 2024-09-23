@@ -5,33 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d2909f09-5314-4fa0-81db-822c2bd7f4fb" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/Main.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/logback.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/PODJO/Comments.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/PODJO/Post.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/PODJO/Todos.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/PODJO/User.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/Tests/BaseTestCase.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/Tests/CommentsTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/Tests/NegativeTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/Tests/PostTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/Tests/TodosTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/Tests/UserTests.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/Utils/ApiWrapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/Utils/AuthenticationFilter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/Utils/ConfigurationReader.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/Utils/TestDataHelper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/resources/comments-schema.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/resources/configuration.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/resources/post-schema.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/resources/schemaUser.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/resources/todos-schema.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/Tests/NegativeTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/Tests/NegativeTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/Tests/PostTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/Tests/PostTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/Tests/TodosTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/Tests/TodosTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -48,6 +24,18 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN",
+    "assignee": "IhorTk"
+  }
+}]]></component>
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/IhorTk/REST_API_GoREST",
+    "accountId": "b4b6541f-28af-47ae-a412-bb3f32b5ed8e"
+  }
+}]]></component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 2
 }</component>

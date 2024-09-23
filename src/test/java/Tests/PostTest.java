@@ -1,18 +1,19 @@
 package Tests;
 
+import PODJO.Post;
 import Utils.ApiWrapper;
+import Utils.ConfigurationReader;
 import Utils.TestDataHelper;
 import io.restassured.response.Response;
-import org.example.Post;
 import org.junit.jupiter.api.Test;
 
-import static Utils.ApiWrapper.deleteRequest;
-import static Utils.ApiWrapper.sendPatchRequest;
+import static Utils.ApiWrapper.*;
 import static io.restassured.RestAssured.given;
 import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInClasspath;
 import static org.hamcrest.Matchers.hasSize;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class PostTest extends BaseHomeWorkTest {
+public class PostTest extends BaseTestCase {
 
     @Test
     public void schemePostValidationTest() {
@@ -20,9 +21,9 @@ public class PostTest extends BaseHomeWorkTest {
 
         sendGetRequest(
                 given().pathParams("id", postUserId),
-                getConfig("objectPathV2")
-                        + getConfig("objectIdPath")
-                        + getConfig("objectPostPath")
+                ConfigurationReader.get("apiVersion")
+                        + ConfigurationReader.get("objectIdPath")
+                        + ConfigurationReader.get("objectPostPath")
         )
                 .assertThat()
                 .body(matchesJsonSchemaInClasspath("post-schema.json"));
@@ -36,8 +37,8 @@ public class PostTest extends BaseHomeWorkTest {
         sendGetRequest(
                 given().pathParams("page", page,
                         "perPage", perPage),
-                getConfig("objectPathV2")
-                        + getConfig("objectPostPath")
+                ConfigurationReader.get("apiVersion")
+                        + ConfigurationReader.get("objectPostPath")
                         + "?page={page}&per_page={perPage}"
         )
                 .assertThat()
@@ -53,9 +54,9 @@ public class PostTest extends BaseHomeWorkTest {
         Post actualPost =
                 ApiWrapper.sendPostRequest(
                         given().pathParams("id", postUserId),
-                        getConfig("objectPathV2")
-                                + getConfig("objectIdPath")
-                                + getConfig("objectPostPath"),
+                        ConfigurationReader.get("apiVersion")
+                                + ConfigurationReader.get("objectIdPath")
+                                + ConfigurationReader.get("objectPostPath"),
                         newPost,
                         Post.class
                 );
@@ -70,8 +71,8 @@ public class PostTest extends BaseHomeWorkTest {
 
         deleteRequest(
                 given().pathParams("id", postId),
-                getConfig("objectPathV2")
-                        + getConfig("objectPostIdPath")
+                ConfigurationReader.get("apiVersion")
+                        + ConfigurationReader.get("objectPostIdPath")
         );
     }
 
@@ -80,14 +81,14 @@ public class PostTest extends BaseHomeWorkTest {
 
         int postId = getId("objectPostPath", "id");
         String nameCheckedField = "title";
-        String valueCheckedField = "BORISZ";
+        String valueCheckedField = "John_Doe";
 
         sendPatchRequest(
                 given().pathParams("id", postId),
                 nameCheckedField,
                 valueCheckedField,
-                getConfig("objectPathV2")
-                        + getConfig("objectPostIdPath")
+                ConfigurationReader.get("apiVersion")
+                        + ConfigurationReader.get("objectPostIdPath")
         );
     }
 
@@ -101,14 +102,14 @@ public class PostTest extends BaseHomeWorkTest {
 
 
         Post newPost = TestDataHelper.createPost(id);
-        newPost.setTitle("BORISZ");
+        newPost.setTitle("John_Doe");
         newPost.setUserId(userId);
 
         Post actualPost =
                 ApiWrapper.sendPutRequest(
                         given().pathParams("id", id),
-                        getConfig("objectPathV2")
-                                + getConfig("objectPostIdPath"),
+                        ConfigurationReader.get("apiVersion")
+                                + ConfigurationReader.get("objectPostIdPath"),
                         newPost,
                         Post.class
                 );
