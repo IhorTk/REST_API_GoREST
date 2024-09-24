@@ -17,14 +17,14 @@ public class PostTest extends BaseTestCase {
 
     @Test
     public void schemePostValidationTest() {
-        int postUserId = getId("objectPostPath", "user_id");
+        int postUserId = getId("postPath", "user_id");
 
         sendGetRequest(
                 given().pathParams("id", postUserId),
                 ConfigurationReader.get("userIdPath")
-                        + ConfigurationReader.get("objectPostPath"))
+                        + ConfigurationReader.get("postPath"))
                 .assertThat()
-                .body(matchesJsonSchemaInClasspath("post-schema.json"));
+                .body(matchesJsonSchemaInClasspath("schemaPost.json"));
     }
 
     @Test
@@ -35,7 +35,7 @@ public class PostTest extends BaseTestCase {
         sendGetRequest(
                 given().pathParams("page", page,
                         "perPage", perPage),
-                ConfigurationReader.get("objectPostPath")
+                ConfigurationReader.get("postPath")
                         + "?page={page}&per_page={perPage}")
                 .assertThat()
                 .body("$", hasSize(Integer.parseInt(perPage)));
@@ -44,14 +44,14 @@ public class PostTest extends BaseTestCase {
 
     @Test
     public void newPostCreation() {
-        int postUserId = getId("objectPostPath", "user_id");
+        int postUserId = getId("postPath", "user_id");
 
         Post newPost = TestDataHelper.createPost(postUserId);
         Post actualPost =
                 ApiWrapper.sendPostRequest(
                         given().pathParams("id", postUserId),
                         ConfigurationReader.get("userIdPath")
-                                + ConfigurationReader.get("objectPostPath"),
+                                + ConfigurationReader.get("postPath"),
                         newPost,
                         Post.class);
 
@@ -61,17 +61,17 @@ public class PostTest extends BaseTestCase {
     @Test
     public void deletePost() {
 
-        int postId = getId("objectPostPath", "id");
+        int postId = getId("postPath", "id");
 
         deleteRequest(
                 given().pathParams("id", postId),
-                ConfigurationReader.get("objectPostIdPath"));
+                ConfigurationReader.get("postIdPath"));
     }
 
     @Test
     public void patchTitlePost() {
 
-        int postId = getId("objectPostPath", "id");
+        int postId = getId("postPath", "id");
         String nameCheckedField = "title";
         String valueCheckedField = "John_Doe";
 
@@ -79,14 +79,14 @@ public class PostTest extends BaseTestCase {
                 given().pathParams("id", postId),
                 nameCheckedField,
                 valueCheckedField,
-                ConfigurationReader.get("objectPostIdPath"));
+                ConfigurationReader.get("postIdPath"));
     }
 
     @Test
 
     public void putTitlePost() {
 
-        Response response = getListId("objectPostPath");
+        Response response = getListId("postPath");
         int userId = response.jsonPath().getInt("[0]."+"user_id");
         int id = response.jsonPath().getInt("[0]."+"id");
 
@@ -98,7 +98,7 @@ public class PostTest extends BaseTestCase {
         Post actualPost =
                 ApiWrapper.sendPutRequest(
                         given().pathParams("id", id),
-                        ConfigurationReader.get("objectPostIdPath"),
+                        ConfigurationReader.get("postIdPath"),
                         newPost,
                         Post.class);
         assertEquals(actualPost, newPost);

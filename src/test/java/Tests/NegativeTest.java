@@ -18,7 +18,7 @@ public class NegativeTest extends BaseTestCase {
 
     @ParameterizedTest
     @ValueSource(strings = {"  ", ""})
-    public void patchEmptyNameUsers(String input) {
+    public void incorrectUserName(String input) {
         int userId = getId("endPointUsers", "id");
         String nameCheckedField = "name";
 
@@ -45,7 +45,7 @@ public class NegativeTest extends BaseTestCase {
 
     @ParameterizedTest
     @ValueSource(strings = {"  ", "", "m"})
-    public void patchNegativeGenderUsers(String input) {
+    public void incorrectUserGender(String input) {
         int userId = getId("endPointUsers", "id");
         String nameCheckedField = "gender";
 
@@ -66,7 +66,7 @@ public class NegativeTest extends BaseTestCase {
 
     @ParameterizedTest
     @ValueSource(strings = {"john_doe.gmail.com", "john_doe@gmail.com ", " john_doe@gmail.com", "@gmail.com"})
-    public void patchNegativeEmailUsers(String input) {
+    public void incorrectUserEmail(String input) {
         int userId = getId("endPointUsers", "id");
         String nameCheckedField = "email";
 
@@ -87,7 +87,7 @@ public class NegativeTest extends BaseTestCase {
 
     @Test
 
-    public void patchNegativeReturnEmailUsers() {
+    public void incorrectReturnUserEmail() {
         int userId = getId("endPointUsers", "id");
 
         String nameCheckedField = "email";
@@ -110,7 +110,7 @@ public class NegativeTest extends BaseTestCase {
 
 
     @Test
-    public void newUserCreationWithoutToken() {
+    public void createUserLessToken() {
         User newUser = TestDataHelper.createUser();
 
         given()
@@ -127,7 +127,7 @@ public class NegativeTest extends BaseTestCase {
     }
 
     @Test
-    public void newUserCreationNullName() {
+    public void createUserLessName() {
         User newUser = TestDataHelper.createUser();
         newUser.setName(null);
         given()
@@ -143,6 +143,5 @@ public class NegativeTest extends BaseTestCase {
                 .log().ifValidationFails()
                 .body("[0].field", equalTo("name"))
                 .body("[0].message ", equalTo("can't be blank"));
-
     }
 }

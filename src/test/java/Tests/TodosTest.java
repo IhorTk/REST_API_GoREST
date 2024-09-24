@@ -17,14 +17,14 @@ public class TodosTest extends BaseTestCase {
 
     @Test
     public void schemeTodosValidationTest() {
-        int userId = getId("objectToDosPostPath", "user_id");
+        int userId = getId("toDosPath", "user_id");
 
         sendGetRequest(
                 given().pathParams("id", userId),
                 ConfigurationReader.get("userIdPath")
-                        + ConfigurationReader.get("objectToDosPostPath"))
+                        + ConfigurationReader.get("toDosPath"))
                 .assertThat()
-                .body(matchesJsonSchemaInClasspath("todos-schema.json"));
+                .body(matchesJsonSchemaInClasspath("schemaToDos.json"));
     }
 
     @Test
@@ -35,7 +35,7 @@ public class TodosTest extends BaseTestCase {
         sendGetRequest(
                 given().pathParams("page",
                         page, "perPage", perPage),
-                ConfigurationReader.get("objectToDosPostPath")
+                ConfigurationReader.get("toDosPath")
                         + "?page={page}&per_page={perPage}")
                 .assertThat()
                 .body("$", hasSize(Integer.parseInt(perPage)));
@@ -52,7 +52,7 @@ public class TodosTest extends BaseTestCase {
                 ApiWrapper.sendPostRequest(
                         given().pathParams("id", userId),
                         ConfigurationReader.get("userIdPath")
-                                + ConfigurationReader.get("objectToDosPostPath"),
+                                + ConfigurationReader.get("toDosPath"),
                         newUsersTodo,
                         Todos.class);
         assertEquals(actualUsersTodo, newUsersTodo);
@@ -61,16 +61,16 @@ public class TodosTest extends BaseTestCase {
     @Test
     public void deleteToDo() {
 
-        int userId = getId("objectToDosPostPath", "id");
+        int userId = getId("toDosPath", "id");
 
         deleteRequest(
                 given().pathParams("id", userId),
-                ConfigurationReader.get("objectToDosPostIdPath"));
+                ConfigurationReader.get("toDosIdPath"));
     }
 
     @Test
     public void patchTitleTodo() {
-        int userId = getId("objectToDosPostPath", "id");
+        int userId = getId("toDosPath", "id");
 
         String nameCheckedField = "title";
         String valueCheckedField = "New ToDos";
@@ -79,14 +79,14 @@ public class TodosTest extends BaseTestCase {
                 given().pathParams("id", userId),
                 nameCheckedField,
                 valueCheckedField,
-                ConfigurationReader.get("objectToDosPostIdPath"));
+                ConfigurationReader.get("toDosIdPath"));
     }
 
     @Test
 
     public void putTitleTodo() {
 
-        Response response = getListId("objectToDosPostPath");
+        Response response = getListId("toDosPath");
         int userId = response.jsonPath().getInt("[0]."+"user_id");
         int id = response.jsonPath().getInt("[0]."+"id");
 
@@ -96,7 +96,7 @@ public class TodosTest extends BaseTestCase {
         Todos actualTodos =
                 sendPutRequest(
                         given().pathParams("id", id),
-                        ConfigurationReader.get("objectToDosPostIdPath"),
+                        ConfigurationReader.get("toDosIdPath"),
                         newTodos,
                         Todos.class);
         assertEquals(actualTodos, newTodos);

@@ -17,9 +17,9 @@ public class CommentsTest extends BaseTestCase {
 
     @Test
     public void schemeCommentsValidationTest() {
-        sendGetRequest(ConfigurationReader.get("objectCommentsPostPath"))
+        sendGetRequest(ConfigurationReader.get("commentsPath"))
                 .assertThat()
-                .body(matchesJsonSchemaInClasspath("comments-schema.json"));
+                .body(matchesJsonSchemaInClasspath("schemaComment.json"));
     }
 
     @Test
@@ -30,7 +30,7 @@ public class CommentsTest extends BaseTestCase {
         sendGetRequest(
                 given().pathParams("page",
                         page, "perPage", perPage),
-                 ConfigurationReader.get("objectCommentsPostPath")
+                 ConfigurationReader.get("commentsPath")
                         + "?page={page}&per_page={perPage}")
                 .assertThat()
                 .body("$", hasSize(Integer.parseInt(perPage)));
@@ -38,15 +38,15 @@ public class CommentsTest extends BaseTestCase {
 
     @Test
     public void newCommentPostsCreation() {
-        int postId = getId("objectCommentsPostPath", "post_id");
+        int postId = getId("commentsPath", "post_id");
 
         Comments newPCommentsPost = TestDataHelper.createComments(postId);
 
         Comments actualComments =
                 ApiWrapper.sendPostRequest(
                         given().pathParams("id", postId),
-                        ConfigurationReader.get("objectPostIdPath")
-                                + ConfigurationReader.get("objectCommentsPostPath"),
+                        ConfigurationReader.get("postIdPath")
+                                + ConfigurationReader.get("commentsPath"),
                         newPCommentsPost,
                         Comments.class);
         assertEquals(actualComments, newPCommentsPost);
@@ -55,15 +55,15 @@ public class CommentsTest extends BaseTestCase {
     @Test
     public void deleteComment() {
 
-        int postId = getId("objectCommentsPostPath", "id");
+        int postId = getId("commentsPath", "id");
 
         deleteRequest(given().pathParams("id", postId),
-                ConfigurationReader.get("objectCommentsIdPath"));
+                ConfigurationReader.get("commentsIdPath"));
     }
 
     @Test
     public void patchNameComment() {
-        int postId = getId("objectCommentsPostPath", "id");
+        int postId = getId("commentsPath", "id");
 
         String nameCheckedField = "name";
         String valueCheckedField = "JOHN_DOE";
@@ -72,13 +72,13 @@ public class CommentsTest extends BaseTestCase {
                 given().pathParams("id", postId),
                 nameCheckedField,
                 valueCheckedField,
-                ConfigurationReader.get("objectCommentsIdPath"));
+                ConfigurationReader.get("commentsIdPath"));
     }
 
     @Test
       public void putNameComment() {
 
-        Response response = getListId("objectCommentsPostPath");
+        Response response = getListId("commentsPath");
         int id = response.jsonPath().getInt("[0]."+"id");
         int postId = response.jsonPath().getInt("[0]."+"post_id");
 
@@ -90,7 +90,7 @@ public class CommentsTest extends BaseTestCase {
         Comments actualComments =
                 ApiWrapper.sendPutRequest(
                         given().pathParams("id", id),
-                        ConfigurationReader.get("objectCommentsIdPath"),
+                        ConfigurationReader.get("commentsIdPath"),
                         comments,
                         Comments.class);
 
