@@ -29,8 +29,7 @@ public class NegativeTest extends BaseTestCase {
                     .body("{ \"" + nameCheckedField + "\": \"" + input + "\" }")
                     .contentType(ContentType.JSON)
                     .when()
-                    .patch(ConfigurationReader.get("apiVersion")
-                            + ConfigurationReader.get("userIdPath"))
+                    .patch(ConfigurationReader.get("userIdPath"))
                     .then()
                     .statusCode(422)
                     .contentType(ContentType.JSON)
@@ -56,8 +55,7 @@ public class NegativeTest extends BaseTestCase {
                 .body("{ \"" + nameCheckedField + "\": \"" + input + "\" }")
                 .contentType(ContentType.JSON)
                 .when()
-                .patch(ConfigurationReader.get("apiVersion")
-                        + ConfigurationReader.get("userIdPath"))
+                .patch(ConfigurationReader.get("userIdPath"))
                 .then()
                 .statusCode(422)
                 .contentType(ContentType.JSON)
@@ -67,7 +65,7 @@ public class NegativeTest extends BaseTestCase {
     }
 
     @ParameterizedTest
-    @ValueSource(strings = {"boris.gmail.com", "boris@gmail.com ", " boris@gmail.com", "@gmail.com"})
+    @ValueSource(strings = {"john_doe.gmail.com", "john_doe@gmail.com ", " john_doe@gmail.com", "@gmail.com"})
     public void patchNegativeEmailUsers(String input) {
         int userId = getId("endPointUsers", "id");
         String nameCheckedField = "email";
@@ -78,8 +76,7 @@ public class NegativeTest extends BaseTestCase {
                 .body("{ \"" + nameCheckedField + "\": \"" + input + "\" }")
                 .contentType(ContentType.JSON)
                 .when()
-                .patch(ConfigurationReader.get("apiVersion")
-                        + ConfigurationReader.get("userIdPath"))
+                .patch(ConfigurationReader.get("userIdPath"))
                 .then()
                 .statusCode(422)
                 .contentType(ContentType.JSON)
@@ -102,8 +99,7 @@ public class NegativeTest extends BaseTestCase {
                 .body("{ \"" + nameCheckedField + "\": \"" + valueCheckedField + "\" }")
                 .contentType(ContentType.JSON)
                 .when()
-                .patch(ConfigurationReader.get("apiVersion")
-                        + ConfigurationReader.get("userIdPath"))
+                .patch(ConfigurationReader.get("userIdPath"))
                 .then()
                 .statusCode(422)
                 .contentType(ContentType.JSON)
@@ -121,8 +117,7 @@ public class NegativeTest extends BaseTestCase {
                 .contentType(ContentType.JSON)
                 .body(newUser)
                 .when()
-                .post(ConfigurationReader.get("apiVersion")
-                        + ConfigurationReader.get("endPointUsers"))
+                .post(ConfigurationReader.get("endPointUsers"))
                 .then()
                 .assertThat()
                 .statusCode(401)
@@ -140,8 +135,7 @@ public class NegativeTest extends BaseTestCase {
                 .contentType(ContentType.JSON)
                 .body(newUser)
                 .when()
-                .post(ConfigurationReader.get("apiVersion")
-                        + ConfigurationReader.get("endPointUsers"))
+                .post(ConfigurationReader.get("endPointUsers"))
                 .then()
                 .assertThat()
                 .statusCode(422)

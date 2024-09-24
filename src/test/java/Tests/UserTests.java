@@ -18,24 +18,20 @@ public class UserTests extends BaseTestCase {
     @Test
     public void getListOfObjects() {
         sendGetRequest(
-                ConfigurationReader.get("apiVersion")
-                        + ConfigurationReader.get("endPointUsers"))
+                ConfigurationReader.get("endPointUsers"))
                 .assertThat()
-                .body("$", hasSize(10)
-                );
+                .body("$", hasSize(10));
     }
 
     @Test
     public void getListParamObjectsUsers() {
-        String page = "5";
-        String perPage = "50";
+        String page = "12";
+        String perPage = "33";
 
         sendGetRequest(
                 given().pathParams("page", page,
                         "perPage", perPage),
-                (ConfigurationReader.get("apiVersion")
-                        + ConfigurationReader.get("endPointUsers") + "?page={page}&per_page={perPage}")
-        )
+                (ConfigurationReader.get("endPointUsers") + "?page={page}&per_page={perPage}"))
                 .assertThat()
                 .body("$", hasSize(Integer.parseInt(perPage)));
     }
@@ -46,9 +42,7 @@ public class UserTests extends BaseTestCase {
         int userId = getId("endPointUsers", "id");
         sendGetRequest(
                 given().pathParams("id", userId),
-                ConfigurationReader.get("apiVersion")
-                        + ConfigurationReader.get("userIdPath")
-        )
+                ConfigurationReader.get("userIdPath"))
                 .assertThat()
                 .body(matchesJsonSchemaInClasspath("schemaUser.json"));
     }
@@ -60,11 +54,9 @@ public class UserTests extends BaseTestCase {
 
         User actualClient =
                 ApiWrapper.sendPostRequest(
-                        ConfigurationReader.get("apiVersion")
-                                + ConfigurationReader.get("endPointUsers"),
+                        ConfigurationReader.get("endPointUsers"),
                         newUser,
-                        User.class
-                );
+                        User.class);
 
         assertEquals(actualClient, newUser);
     }
@@ -76,9 +68,7 @@ public class UserTests extends BaseTestCase {
 
         deleteRequest(
                 given().pathParams("id", userId),
-                ConfigurationReader.get("apiVersion")
-                        + ConfigurationReader.get("userIdPath")
-        );
+                ConfigurationReader.get("userIdPath"));
     }
 
     @Test
@@ -92,9 +82,7 @@ public class UserTests extends BaseTestCase {
                 given().pathParams("id", userId),
                 nameCheckedField,
                 valueCheckedField,
-                ConfigurationReader.get("apiVersion")
-                        + ConfigurationReader.get("userIdPath")
-        );
+                ConfigurationReader.get("userIdPath"));
     }
 
     @Test
@@ -108,11 +96,9 @@ public class UserTests extends BaseTestCase {
         User actualClient =
                 ApiWrapper.sendPutRequest(
                         given().pathParams("id", userId),
-                        ConfigurationReader.get("apiVersion")
-                                + ConfigurationReader.get("userIdPath"),
+                        ConfigurationReader.get("userIdPath"),
                         newUser,
-                        User.class
-                );
+                        User.class);
         assertEquals(actualClient, newUser);
     }
 

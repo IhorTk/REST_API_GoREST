@@ -17,10 +17,7 @@ public class CommentsTest extends BaseTestCase {
 
     @Test
     public void schemeCommentsValidationTest() {
-        sendGetRequest(
-                ConfigurationReader.get("apiVersion")
-                        + ConfigurationReader.get("objectCommentsPostPath")
-        )
+        sendGetRequest(ConfigurationReader.get("objectCommentsPostPath"))
                 .assertThat()
                 .body(matchesJsonSchemaInClasspath("comments-schema.json"));
     }
@@ -33,10 +30,8 @@ public class CommentsTest extends BaseTestCase {
         sendGetRequest(
                 given().pathParams("page",
                         page, "perPage", perPage),
-                ConfigurationReader.get("apiVersion")
-                        + ConfigurationReader.get("objectCommentsPostPath")
-                        + "?page={page}&per_page={perPage}"
-        )
+                 ConfigurationReader.get("objectCommentsPostPath")
+                        + "?page={page}&per_page={perPage}")
                 .assertThat()
                 .body("$", hasSize(Integer.parseInt(perPage)));
     }
@@ -50,12 +45,10 @@ public class CommentsTest extends BaseTestCase {
         Comments actualComments =
                 ApiWrapper.sendPostRequest(
                         given().pathParams("id", postId),
-                        ConfigurationReader.get("apiVersion")
-                                + ConfigurationReader.get("objectPostIdPath")
+                        ConfigurationReader.get("objectPostIdPath")
                                 + ConfigurationReader.get("objectCommentsPostPath"),
                         newPCommentsPost,
-                        Comments.class
-                );
+                        Comments.class);
         assertEquals(actualComments, newPCommentsPost);
     }
 
@@ -65,9 +58,7 @@ public class CommentsTest extends BaseTestCase {
         int postId = getId("objectCommentsPostPath", "id");
 
         deleteRequest(given().pathParams("id", postId),
-                ConfigurationReader.get("apiVersion")
-                        + ConfigurationReader.get("objectCommentsIdPath")
-        );
+                ConfigurationReader.get("objectCommentsIdPath"));
     }
 
     @Test
@@ -81,9 +72,7 @@ public class CommentsTest extends BaseTestCase {
                 given().pathParams("id", postId),
                 nameCheckedField,
                 valueCheckedField,
-                ConfigurationReader.get("apiVersion")
-                        + ConfigurationReader.get("objectCommentsIdPath")
-        );
+                ConfigurationReader.get("objectCommentsIdPath"));
     }
 
     @Test
@@ -95,18 +84,15 @@ public class CommentsTest extends BaseTestCase {
 
         Comments comments = TestDataHelper.createComments(postId);
 
-        comments.setName("BORISZ");
-        //comments.setID(id);
+        comments.setName("John_Doe");
 
 
         Comments actualComments =
                 ApiWrapper.sendPutRequest(
                         given().pathParams("id", id),
-                        ConfigurationReader.get("apiVersion")
-                                + ConfigurationReader.get("objectCommentsIdPath"),
+                        ConfigurationReader.get("objectCommentsIdPath"),
                         comments,
-                        Comments.class
-                );
+                        Comments.class);
 
         assertEquals(actualComments, comments);
     }

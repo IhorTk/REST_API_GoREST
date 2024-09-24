@@ -21,10 +21,8 @@ public class TodosTest extends BaseTestCase {
 
         sendGetRequest(
                 given().pathParams("id", userId),
-                ConfigurationReader.get("apiVersion")
-                        + ConfigurationReader.get("userIdPath")
-                        + ConfigurationReader.get("objectToDosPostPath")
-        )
+                ConfigurationReader.get("userIdPath")
+                        + ConfigurationReader.get("objectToDosPostPath"))
                 .assertThat()
                 .body(matchesJsonSchemaInClasspath("todos-schema.json"));
     }
@@ -37,10 +35,8 @@ public class TodosTest extends BaseTestCase {
         sendGetRequest(
                 given().pathParams("page",
                         page, "perPage", perPage),
-                ConfigurationReader.get("apiVersion")
-                        + ConfigurationReader.get("objectToDosPostPath")
-                        + "?page={page}&per_page={perPage}"
-        )
+                ConfigurationReader.get("objectToDosPostPath")
+                        + "?page={page}&per_page={perPage}")
                 .assertThat()
                 .body("$", hasSize(Integer.parseInt(perPage)));
     }
@@ -55,12 +51,10 @@ public class TodosTest extends BaseTestCase {
         Todos actualUsersTodo =
                 ApiWrapper.sendPostRequest(
                         given().pathParams("id", userId),
-                        ConfigurationReader.get("apiVersion")
-                                + ConfigurationReader.get("userIdPath")
+                        ConfigurationReader.get("userIdPath")
                                 + ConfigurationReader.get("objectToDosPostPath"),
                         newUsersTodo,
-                        Todos.class
-                );
+                        Todos.class);
         assertEquals(actualUsersTodo, newUsersTodo);
     }
 
@@ -71,9 +65,7 @@ public class TodosTest extends BaseTestCase {
 
         deleteRequest(
                 given().pathParams("id", userId),
-                ConfigurationReader.get("apiVersion")
-                        + ConfigurationReader.get("objectToDosPostIdPath")
-        );
+                ConfigurationReader.get("objectToDosPostIdPath"));
     }
 
     @Test
@@ -87,9 +79,7 @@ public class TodosTest extends BaseTestCase {
                 given().pathParams("id", userId),
                 nameCheckedField,
                 valueCheckedField,
-                ConfigurationReader.get("apiVersion")
-                        + ConfigurationReader.get("objectToDosPostIdPath")
-        );
+                ConfigurationReader.get("objectToDosPostIdPath"));
     }
 
     @Test
@@ -106,11 +96,9 @@ public class TodosTest extends BaseTestCase {
         Todos actualTodos =
                 sendPutRequest(
                         given().pathParams("id", id),
-                        ConfigurationReader.get("apiVersion")
-                                + ConfigurationReader.get("objectToDosPostIdPath"),
+                        ConfigurationReader.get("objectToDosPostIdPath"),
                         newTodos,
-                        Todos.class
-                );
+                        Todos.class);
         assertEquals(actualTodos, newTodos);
     }
 }

@@ -21,10 +21,8 @@ public class PostTest extends BaseTestCase {
 
         sendGetRequest(
                 given().pathParams("id", postUserId),
-                ConfigurationReader.get("apiVersion")
-                        + ConfigurationReader.get("userIdPath")
-                        + ConfigurationReader.get("objectPostPath")
-        )
+                ConfigurationReader.get("userIdPath")
+                        + ConfigurationReader.get("objectPostPath"))
                 .assertThat()
                 .body(matchesJsonSchemaInClasspath("post-schema.json"));
     }
@@ -37,10 +35,8 @@ public class PostTest extends BaseTestCase {
         sendGetRequest(
                 given().pathParams("page", page,
                         "perPage", perPage),
-                ConfigurationReader.get("apiVersion")
-                        + ConfigurationReader.get("objectPostPath")
-                        + "?page={page}&per_page={perPage}"
-        )
+                ConfigurationReader.get("objectPostPath")
+                        + "?page={page}&per_page={perPage}")
                 .assertThat()
                 .body("$", hasSize(Integer.parseInt(perPage)));
     }
@@ -54,12 +50,10 @@ public class PostTest extends BaseTestCase {
         Post actualPost =
                 ApiWrapper.sendPostRequest(
                         given().pathParams("id", postUserId),
-                        ConfigurationReader.get("apiVersion")
-                                + ConfigurationReader.get("userIdPath")
+                        ConfigurationReader.get("userIdPath")
                                 + ConfigurationReader.get("objectPostPath"),
                         newPost,
-                        Post.class
-                );
+                        Post.class);
 
         assertEquals(actualPost, newPost);
     }
@@ -71,9 +65,7 @@ public class PostTest extends BaseTestCase {
 
         deleteRequest(
                 given().pathParams("id", postId),
-                ConfigurationReader.get("apiVersion")
-                        + ConfigurationReader.get("objectPostIdPath")
-        );
+                ConfigurationReader.get("objectPostIdPath"));
     }
 
     @Test
@@ -87,9 +79,7 @@ public class PostTest extends BaseTestCase {
                 given().pathParams("id", postId),
                 nameCheckedField,
                 valueCheckedField,
-                ConfigurationReader.get("apiVersion")
-                        + ConfigurationReader.get("objectPostIdPath")
-        );
+                ConfigurationReader.get("objectPostIdPath"));
     }
 
     @Test
@@ -108,11 +98,9 @@ public class PostTest extends BaseTestCase {
         Post actualPost =
                 ApiWrapper.sendPutRequest(
                         given().pathParams("id", id),
-                        ConfigurationReader.get("apiVersion")
-                                + ConfigurationReader.get("objectPostIdPath"),
+                        ConfigurationReader.get("objectPostIdPath"),
                         newPost,
-                        Post.class
-                );
+                        Post.class);
         assertEquals(actualPost, newPost);
     }
 }

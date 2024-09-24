@@ -15,7 +15,7 @@ public class BaseTestCase {
 
     public void setUp() {
         RestAssured.baseURI = ConfigurationReader.get("baseURI");
-//        RestAssured.basePath = ConfigurationReader.get("apiVersion");
+        RestAssured.basePath = ConfigurationReader.get("apiVersion");
         RestAssured.requestSpecification = given().accept(ContentType.ANY);
         RestAssured.filters(new AllureRestAssured());
     }
@@ -26,8 +26,7 @@ public class BaseTestCase {
         return
                 given()
                         .when()
-                        .get(ConfigurationReader.get("apiVersion") +
-                                ConfigurationReader.get(endpoint))
+                        .get(ConfigurationReader.get(endpoint))
                         .then()
                         .statusCode(200)
                         .log().ifValidationFails()
@@ -40,8 +39,7 @@ public class BaseTestCase {
 
         return given()
                 .when()
-                .get(ConfigurationReader.get("apiVersion") +
-                        ConfigurationReader.get(endpoint))
+                .get(ConfigurationReader.get(endpoint))
                 .then()
                 .statusCode(200)
                 .log().ifValidationFails()
@@ -54,8 +52,7 @@ public class BaseTestCase {
         return
                 given()
                         .when()
-                        .get(ConfigurationReader.get("apiVersion") +
-                                ConfigurationReader.get(endpoint))
+                        .get(ConfigurationReader.get(endpoint))
                         .then()
                         .statusCode(200)
                         .log().ifValidationFails()

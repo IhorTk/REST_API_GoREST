@@ -6,18 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="d2909f09-5314-4fa0-81db-822c2bd7f4fb" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/PODJO/Comments.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/PODJO/Comments.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/PODJO/Post.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/PODJO/Post.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/PODJO/Todos.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/PODJO/Todos.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/PODJO/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/PODJO/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/Tests/BaseTestCase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/Tests/BaseTestCase.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/Tests/CommentsTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/Tests/CommentsTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/Tests/NegativeTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/Tests/NegativeTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/Tests/PostTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/Tests/PostTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/Tests/TodosTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/Tests/TodosTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/Tests/UserTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/Tests/UserTests.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/Utils/ApiWrapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/Utils/ApiWrapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/Utils/TestDataHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/Utils/TestDataHelper.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -89,7 +78,7 @@
       <recent name="Utils" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.CommentsTest.newCommentPostsCreation">
+  <component name="RunManager" selected="JUnit.PostTest.newPostCreation">
     <configuration name="CommentsTest.newCommentPostsCreation" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="REST_API_GoREST" />
       <extension name="coverage">
@@ -172,8 +161,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.CommentsTest.newCommentPostsCreation" />
         <item itemvalue="JUnit.PostTest.newPostCreation" />
+        <item itemvalue="JUnit.CommentsTest.newCommentPostsCreation" />
         <item itemvalue="JUnit.UserTests.getUsers2" />
         <item itemvalue="JUnit.UserTests.getUsers" />
         <item itemvalue="JUnit.UserTests.getUsers1" />
