@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonSetter;
 
 public class Comments {
     private int id;
-    private int postID;
+    private int postId;
     private String name;
     private String email;
     private String body;
@@ -17,13 +17,13 @@ public class Comments {
         this.id = value;
     }
 
-    public int getPostID() {
-        return postID;
+    public int getPostId() {
+        return postId;
     }
 
     @JsonSetter("post_id")
-    public void setPostID(int value) {
-        this.postID = value;
+    public void setPostId(int value) {
+        this.postId = value;
     }
 
     public String getName() {
@@ -57,7 +57,7 @@ public class Comments {
 
         Comments comments = (Comments) obj;
 
-        return getPostID() == comments.getPostID() &&
+        return getPostId() == comments.getPostId() &&
                 getName().equals(comments.getName()) &&
                 getBody().equals(comments.getBody()) &&
                 getEmail().equals(comments.getEmail());
@@ -67,7 +67,7 @@ public class Comments {
     public String toString() {
         return "Comments{" +
                 "id=" + id +
-                ", postID=" + postID +
+                ", postID=" + postId +
                 ", name='" + name + '\'' +
                 ", email='" + email + '\'' +
                 ", body='" + body + '\'' +

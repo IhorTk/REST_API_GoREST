@@ -5,8 +5,6 @@ import Utils.AuthenticationFilter;
 import Utils.ConfigurationReader;
 import Utils.TestDataHelper;
 import io.restassured.http.ContentType;
-import org.example.AuthenticationFilter;
-import org.example.NewUser;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -32,7 +30,7 @@ public class NegativeTest extends BaseTestCase {
                     .contentType(ContentType.JSON)
                     .when()
                     .patch(ConfigurationReader.get("apiVersion")
-                            + ConfigurationReader.get("objectIdPath"))
+                            + ConfigurationReader.get("userIdPath"))
                     .then()
                     .statusCode(422)
                     .contentType(ContentType.JSON)
@@ -59,7 +57,7 @@ public class NegativeTest extends BaseTestCase {
                 .contentType(ContentType.JSON)
                 .when()
                 .patch(ConfigurationReader.get("apiVersion")
-                        + ConfigurationReader.get("objectIdPath"))
+                        + ConfigurationReader.get("userIdPath"))
                 .then()
                 .statusCode(422)
                 .contentType(ContentType.JSON)
@@ -81,7 +79,7 @@ public class NegativeTest extends BaseTestCase {
                 .contentType(ContentType.JSON)
                 .when()
                 .patch(ConfigurationReader.get("apiVersion")
-                        + ConfigurationReader.get("objectIdPath"))
+                        + ConfigurationReader.get("userIdPath"))
                 .then()
                 .statusCode(422)
                 .contentType(ContentType.JSON)
@@ -105,7 +103,7 @@ public class NegativeTest extends BaseTestCase {
                 .contentType(ContentType.JSON)
                 .when()
                 .patch(ConfigurationReader.get("apiVersion")
-                        + ConfigurationReader.get("objectIdPath"))
+                        + ConfigurationReader.get("userIdPath"))
                 .then()
                 .statusCode(422)
                 .contentType(ContentType.JSON)

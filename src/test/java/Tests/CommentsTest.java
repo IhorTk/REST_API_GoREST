@@ -5,7 +5,6 @@ import Utils.ApiWrapper;
 import Utils.ConfigurationReader;
 import Utils.TestDataHelper;
 import io.restassured.response.Response;
-import org.example.Comments;
 import org.junit.jupiter.api.Test;
 
 import static Utils.ApiWrapper.*;

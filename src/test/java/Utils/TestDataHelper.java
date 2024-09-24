@@ -1,10 +1,11 @@
 package Utils;
 
+import PODJO.Comments;
+import PODJO.Post;
+import PODJO.Todos;
+import PODJO.User;
 import com.github.javafaker.Faker;
-import org.example.Comments;
-import org.example.NewUser;
-import org.example.Post;
-import org.example.Todos;
+
 
 import java.time.format.DateTimeFormatter;
 
@@ -14,8 +15,8 @@ import static java.time.LocalDateTime.now;
 public class TestDataHelper {
     static Faker faker = new Faker();
 
-    public static NewUser createUser() {
-        NewUser user = new NewUser();
+    public static User createUser() {
+        User user = new User();
         user.setName(faker.name().firstName() + faker.name().lastName() + now());
         user.setEmail(faker.internet().emailAddress());
         user.setGender((faker.demographic().sex()).toLowerCase());
@@ -26,7 +27,7 @@ public class TestDataHelper {
 
     public static Comments createComments(int postId) {
         Comments comments = new Comments();
-        comments.setPostID(postId);
+        comments.setPostId(postId);
         comments.setName(faker.name().firstName() + faker.name().lastName() + now());
         comments.setEmail(faker.internet().emailAddress());
         comments.setBody(faker.lorem().sentence(faker.random().nextInt(10, 40)));
@@ -34,9 +35,9 @@ public class TestDataHelper {
         return comments;
     }
 
-    public static Post createPost(int userID) {
+    public static Post createPost(int userId) {
         Post post = new Post();
-        post.setUserId(userID);
+        post.setUserId(userId);
         post.setTitle(faker.lorem().sentence(faker.random().nextInt(2, 6)));
         post.setBody(faker.lorem().sentence(faker.random().nextInt(8, 18)));
 

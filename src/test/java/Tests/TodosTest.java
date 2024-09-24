@@ -22,7 +22,7 @@ public class TodosTest extends BaseTestCase {
         sendGetRequest(
                 given().pathParams("id", userId),
                 ConfigurationReader.get("apiVersion")
-                        + ConfigurationReader.get("objectIdPath")
+                        + ConfigurationReader.get("userIdPath")
                         + ConfigurationReader.get("objectToDosPostPath")
         )
                 .assertThat()
@@ -56,7 +56,7 @@ public class TodosTest extends BaseTestCase {
                 ApiWrapper.sendPostRequest(
                         given().pathParams("id", userId),
                         ConfigurationReader.get("apiVersion")
-                                + ConfigurationReader.get("objectIdPath")
+                                + ConfigurationReader.get("userIdPath")
                                 + ConfigurationReader.get("objectToDosPostPath"),
                         newUsersTodo,
                         Todos.class
@@ -87,7 +87,7 @@ public class TodosTest extends BaseTestCase {
                 given().pathParams("id", userId),
                 nameCheckedField,
                 valueCheckedField,
-                ConfigurationReader.get("objectPathV2")
+                ConfigurationReader.get("apiVersion")
                         + ConfigurationReader.get("objectToDosPostIdPath")
         );
     }
@@ -101,12 +101,12 @@ public class TodosTest extends BaseTestCase {
         int id = response.jsonPath().getInt("[0]."+"id");
 
         Todos newTodos = TestDataHelper.createTodos(userId);
-        newTodos.setTitle("BORIS");
-        newTodos.setID(id);
+        newTodos.setTitle("John_Doe");
+        newTodos.setId(id);
         Todos actualTodos =
                 sendPutRequest(
                         given().pathParams("id", id),
-                        ConfigurationReader.get("objectPathV2")
+                        ConfigurationReader.get("apiVersion")
                                 + ConfigurationReader.get("objectToDosPostIdPath"),
                         newTodos,
                         Todos.class

@@ -2,14 +2,15 @@ package PODJO;
 
 import com.fasterxml.jackson.annotation.JsonSetter;
 
+
 public class Post {
     private int id;
     private int userId;
     private String title;
     private String body;
 
-    public int getID() { return id; }
-    public void setID(int value) { this.id = value; }
+    public int getId() { return id; }
+    public void setId(int value) { this.id = value; }
 
 
     public int getUserId() {

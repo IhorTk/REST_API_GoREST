@@ -5,16 +5,9 @@ import PODJO.User;
 import Utils.ApiWrapper;
 import Utils.ConfigurationReader;
 import Utils.TestDataHelper;
-import io.restassured.RestAssured;
-import io.restassured.http.ContentType;
-import io.restassured.response.Response;
-import io.restassured.specification.Argument;
 import org.junit.jupiter.api.Test;
 
-import java.util.List;
-
 import static Utils.ApiWrapper.*;
-import static io.restassured.RestAssured.form;
 import static io.restassured.RestAssured.given;
 import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInClasspath;
 import static org.hamcrest.Matchers.hasSize;
@@ -25,8 +18,8 @@ public class UserTests extends BaseTestCase {
     @Test
     public void getListOfObjects() {
         sendGetRequest(
-                getConfig("objectPathV2")
-                        + getConfig("endPointUsers"))
+                ConfigurationReader.get("apiVersion")
+                        + ConfigurationReader.get("endPointUsers"))
                 .assertThat()
                 .body("$", hasSize(10)
                 );
@@ -40,8 +33,8 @@ public class UserTests extends BaseTestCase {
         sendGetRequest(
                 given().pathParams("page", page,
                         "perPage", perPage),
-                (getConfig("objectPathV2")
-                        + getConfig("endPointUsers") + "?page={page}&per_page={perPage}")
+                (ConfigurationReader.get("apiVersion")
+                        + ConfigurationReader.get("endPointUsers") + "?page={page}&per_page={perPage}")
         )
                 .assertThat()
                 .body("$", hasSize(Integer.parseInt(perPage)));
@@ -53,24 +46,24 @@ public class UserTests extends BaseTestCase {
         int userId = getId("endPointUsers", "id");
         sendGetRequest(
                 given().pathParams("id", userId),
-                getConfig("objectPathV2")
-                        + getConfig("objectIdPath")
+                ConfigurationReader.get("apiVersion")
+                        + ConfigurationReader.get("userIdPath")
         )
                 .assertThat()
-                .body(matchesJsonSchemaInClasspath("user-schema.json"));
+                .body(matchesJsonSchemaInClasspath("schemaUser.json"));
     }
 
     @Test
     public void newUserCreation() {
 
-        NewUser newUser = TestDataHelper.createUser();
+        User newUser = TestDataHelper.createUser();
 
-        NewUser actualClient =
+        User actualClient =
                 ApiWrapper.sendPostRequest(
-                        getConfig("objectPathV2")
-                                + getConfig("endPointUsers"),
+                        ConfigurationReader.get("apiVersion")
+                                + ConfigurationReader.get("endPointUsers"),
                         newUser,
-                        NewUser.class
+                        User.class
                 );
 
         assertEquals(actualClient, newUser);
@@ -83,8 +76,8 @@ public class UserTests extends BaseTestCase {
 
         deleteRequest(
                 given().pathParams("id", userId),
-                getConfig("objectPathV2")
-                        + getConfig("objectIdPath")
+                ConfigurationReader.get("apiVersion")
+                        + ConfigurationReader.get("userIdPath")
         );
     }
 
@@ -93,14 +86,14 @@ public class UserTests extends BaseTestCase {
         int userId = getId("endPointUsers", "id");
 
         String nameCheckedField = "name";
-        String valueCheckedField = "BORISZ";
+        String valueCheckedField = "John_Doe";
 
         sendPatchRequest(
                 given().pathParams("id", userId),
                 nameCheckedField,
                 valueCheckedField,
-                getConfig("objectPathV2")
-                        + getConfig("objectIdPath")
+                ConfigurationReader.get("apiVersion")
+                        + ConfigurationReader.get("userIdPath")
         );
     }
 
@@ -109,16 +102,16 @@ public class UserTests extends BaseTestCase {
 
         int userId = getId("endPointUsers", "id");
 
-        NewUser newUser = TestDataHelper.createUser();
-        newUser.setName("BORISZ");
+        User newUser = TestDataHelper.createUser();
+        newUser.setName("John_Doe");
 
-        NewUser actualClient =
+        User actualClient =
                 ApiWrapper.sendPutRequest(
                         given().pathParams("id", userId),
-                        getConfig("objectPathV2")
-                                + getConfig("objectIdPath"),
+                        ConfigurationReader.get("apiVersion")
+                                + ConfigurationReader.get("userIdPath"),
                         newUser,
-                        NewUser.class
+                        User.class
                 );
         assertEquals(actualClient, newUser);
     }

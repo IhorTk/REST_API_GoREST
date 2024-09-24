@@ -3,7 +3,7 @@ package Utils;
 import io.restassured.http.ContentType;
 import io.restassured.response.ValidatableResponse;
 import io.restassured.specification.RequestSpecification;
-import org.example.AuthenticationFilter;
+
 
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.equalTo;
@@ -14,7 +14,7 @@ public class ApiWrapper {
     private final static int DEFAULT_STATUS_CODE_POST = 201;
     private final static int DEFAULT_STATUS_CODE_PUT = 200;
     private final static int DEFAULT_STATUS_CODE_DELETE = 204;
-    public final static String TOKEN = "056f978451fd22e35ef5745d1e5e5c660b5eac7eab756769808c4fa27765aa44";
+    public final static String TOKEN = "3219774c6a08359bb949e19dc6b32eae3dcd8c1be5245554af65b3b6eab6aa43";
 
     public static <T> T sendPostRequest(RequestSpecification requestSpecification,
                                         String endpoint,

@@ -22,7 +22,7 @@ public class PostTest extends BaseTestCase {
         sendGetRequest(
                 given().pathParams("id", postUserId),
                 ConfigurationReader.get("apiVersion")
-                        + ConfigurationReader.get("objectIdPath")
+                        + ConfigurationReader.get("userIdPath")
                         + ConfigurationReader.get("objectPostPath")
         )
                 .assertThat()
@@ -55,7 +55,7 @@ public class PostTest extends BaseTestCase {
                 ApiWrapper.sendPostRequest(
                         given().pathParams("id", postUserId),
                         ConfigurationReader.get("apiVersion")
-                                + ConfigurationReader.get("objectIdPath")
+                                + ConfigurationReader.get("userIdPath")
                                 + ConfigurationReader.get("objectPostPath"),
                         newPost,
                         Post.class

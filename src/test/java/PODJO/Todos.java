@@ -4,18 +4,18 @@ import com.fasterxml.jackson.annotation.JsonSetter;
 
 public class Todos {
     private int id;
-    private int userID;
+    private int userId;
     private String title;
     private String dueOn;
     private String status;
 
-    public int getID() { return id; }
-    public void setID(int value) { this.id = value; }
+    public int getId() { return id; }
+    public void setId(int value) { this.id = value; }
 
-    public int getUserID() { return userID; }
+    public int getUserID() { return userId; }
 
     @JsonSetter("user_id")
-    public void setUserID(int value) { this.userID = value; }
+    public void setUserID(int value) { this.userId = value; }
 
     public String getTitle() { return title; }
     public void setTitle(String value) { this.title = value; }
@@ -46,11 +46,12 @@ public class Todos {
     public String toString() {
         return "Todos{" +
                 "id=" + id +
-                ", userID=" + userID +
+                ", userID=" + userId +
                 ", title='" + title + '\'' +
                 ", dueOn='" + dueOn + '\'' +
                 ", status='" + status + '\'' +
                 '}';
     }
+
 }
 

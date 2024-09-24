@@ -5,9 +5,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d2909f09-5314-4fa0-81db-822c2bd7f4fb" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/PODJO/Comments.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/PODJO/Comments.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/PODJO/Post.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/PODJO/Post.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/PODJO/Todos.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/PODJO/Todos.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/PODJO/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/PODJO/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/Tests/BaseTestCase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/Tests/BaseTestCase.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/Tests/CommentsTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/Tests/CommentsTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/Tests/NegativeTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/Tests/NegativeTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/Tests/PostTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/Tests/PostTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/Tests/TodosTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/Tests/TodosTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/Tests/UserTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/Tests/UserTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/Utils/ApiWrapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/Utils/ApiWrapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/Utils/TestDataHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/Utils/TestDataHelper.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -24,18 +34,18 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "lastFilter": {
-    "state": "OPEN",
-    "assignee": "IhorTk"
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;IhorTk&quot;
   }
-}]]></component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/IhorTk/REST_API_GoREST",
-    "accountId": "b4b6541f-28af-47ae-a412-bb3f32b5ed8e"
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/IhorTk/REST_API_GoREST&quot;,
+    &quot;accountId&quot;: &quot;b4b6541f-28af-47ae-a412-bb3f32b5ed8e&quot;
   }
-}]]></component>
+}</component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 2
 }</component>
@@ -47,6 +57,8 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "JUnit.CommentsTest.newCommentPostsCreation.executor": "Run",
+    "JUnit.PostTest.newPostCreation.executor": "Run",
     "JUnit.UserTests.createNewUserTest.executor": "Run",
     "JUnit.UserTests.getId.executor": "Run",
     "JUnit.UserTests.getUsers.executor": "Run",
@@ -77,8 +89,8 @@
       <recent name="Utils" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.UserTests.getUsers2">
-    <configuration name="UserTests.createNewUserTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="JUnit.CommentsTest.newCommentPostsCreation">
+    <configuration name="CommentsTest.newCommentPostsCreation" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="REST_API_GoREST" />
       <extension name="coverage">
         <pattern>
@@ -87,8 +99,24 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="Tests" />
-      <option name="MAIN_CLASS_NAME" value="Tests.UserTests" />
-      <option name="METHOD_NAME" value="createNewUserTest" />
+      <option name="MAIN_CLASS_NAME" value="Tests.CommentsTest" />
+      <option name="METHOD_NAME" value="newCommentPostsCreation" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="PostTest.newPostCreation" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="REST_API_GoREST" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="Tests.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="Tests" />
+      <option name="MAIN_CLASS_NAME" value="Tests.PostTest" />
+      <option name="METHOD_NAME" value="newPostCreation" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -142,29 +170,13 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="UserTests.getUsersResponse" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="REST_API_GoREST" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="Tests.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="Tests" />
-      <option name="MAIN_CLASS_NAME" value="Tests.UserTests" />
-      <option name="METHOD_NAME" value="getUsersResponse" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.CommentsTest.newCommentPostsCreation" />
+        <item itemvalue="JUnit.PostTest.newPostCreation" />
         <item itemvalue="JUnit.UserTests.getUsers2" />
         <item itemvalue="JUnit.UserTests.getUsers" />
         <item itemvalue="JUnit.UserTests.getUsers1" />
-        <item itemvalue="JUnit.UserTests.getUsersResponse" />
-        <item itemvalue="JUnit.UserTests.createNewUserTest" />
       </list>
     </recent_temporary>
   </component>
