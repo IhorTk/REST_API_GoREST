@@ -28,23 +28,9 @@ public class TodosTest extends BaseTestCase {
     }
 
     @Test
-    public void getListParamObjectsToDos() {
-        String page = "2";
-        String perPage = "30";
+    public void createToDosTest() {
 
-        sendGetRequest(
-                given().pathParams("page",
-                        page, "perPage", perPage),
-                ConfigurationReader.get("toDosPath")
-                        + "?page={page}&per_page={perPage}")
-                .assertThat()
-                .body("$", hasSize(Integer.parseInt(perPage)));
-    }
-
-    @Test
-    public void newTodoUsersCreation() {
-
-        int userId = getId("endPointUsers", "id");
+        int userId = getId("userPath", "id");
 
         Todos newUsersTodo = TestDataHelper.createTodos(userId);
 
@@ -58,18 +44,9 @@ public class TodosTest extends BaseTestCase {
         assertEquals(actualUsersTodo, newUsersTodo);
     }
 
-    @Test
-    public void deleteToDo() {
-
-        int userId = getId("toDosPath", "id");
-
-        deleteRequest(
-                given().pathParams("id", userId),
-                ConfigurationReader.get("toDosIdPath"));
-    }
 
     @Test
-    public void patchTitleTodo() {
+    public void renameToDosTest() {
         int userId = getId("toDosPath", "id");
 
         String nameCheckedField = "title";
@@ -82,9 +59,9 @@ public class TodosTest extends BaseTestCase {
                 ConfigurationReader.get("toDosIdPath"));
     }
 
-    @Test
 
-    public void putTitleTodo() {
+    @Test
+    public void putTitleTodoTest() {
 
         Response response = getListId("toDosPath");
         int userId = response.jsonPath().getInt("[0]."+"user_id");
@@ -100,5 +77,31 @@ public class TodosTest extends BaseTestCase {
                         newTodos,
                         Todos.class);
         assertEquals(actualTodos, newTodos);
+    }
+
+
+    @Test
+    public void getListToDosByParameters() {
+        String numPage = "5";
+        String countToDos = "40";
+
+        sendGetRequest(
+                given().pathParams("numPage",
+                        numPage, "countToDos", countToDos),
+                ConfigurationReader.get("toDosPath")
+                        + "?page={numPage}&per_page={countToDos}")
+                .assertThat()
+                .body("$", hasSize(Integer.parseInt(countToDos)));
+    }
+
+
+    @Test
+    public void deleteToDo() {
+
+        int userId = getId("toDosPath", "id");
+
+        deleteRequest(
+                given().pathParams("id", userId),
+                ConfigurationReader.get("toDosIdPath"));
     }
 }

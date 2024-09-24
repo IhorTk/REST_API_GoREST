@@ -1,5 +1,6 @@
 package Utils;
 
+import PODJO.User;
 import io.restassured.http.ContentType;
 import io.restassured.response.ValidatableResponse;
 import io.restassured.specification.RequestSpecification;
@@ -14,6 +15,8 @@ public class ApiWrapper {
     private final static int DEFAULT_STATUS_CODE_POST = 201;
     private final static int DEFAULT_STATUS_CODE_PUT = 200;
     private final static int DEFAULT_STATUS_CODE_DELETE = 204;
+    private final static int DEFAULT_STATUS_CODE_INCORRECT_DATA_USER = 422;
+
     public final static String TOKEN = "3219774c6a08359bb949e19dc6b32eae3dcd8c1be5245554af65b3b6eab6aa43";
 
     public static <T> T sendPostRequest(RequestSpecification requestSpecification,
@@ -41,6 +44,8 @@ public class ApiWrapper {
         return sendPostRequest(given(), endpoint, requestBody, DEFAULT_STATUS_CODE_POST, responseType);
     }
 
+
+
     public static <T> T sendPostRequest(String endpoint, T requestBody, int statusCode, Class<T> responseType) {
 
         return sendPostRequest(given(), endpoint, requestBody, statusCode, responseType);
@@ -50,7 +55,6 @@ public class ApiWrapper {
 
         return sendPostRequest(requestSpecification, endpoint, requestBody, DEFAULT_STATUS_CODE_POST, responseType);
     }
-
 
     public static <T> T sendPutRequest(RequestSpecification requestSpecification,
                                        String endpoint,
@@ -73,14 +77,14 @@ public class ApiWrapper {
 
 
     public static ValidatableResponse sendPatchRequest(RequestSpecification requestSpecification,
-                                                       String nameCheckedField,
-                                                       String valueCheckedField,
+                                                       String nameCheckField,
+                                                       String valueCheckField,
                                                        String callPath,
                                                        int statusCode) {
         return given()
                 .filter(new AuthenticationFilter(TOKEN))
                 .spec(requestSpecification)
-                .body("{ \"" + nameCheckedField + "\": \"" + valueCheckedField + "\" }")
+                .body("{ \"" + nameCheckField + "\": \"" + valueCheckField + "\" }")
                 .contentType(ContentType.JSON)
                 .when()
                 .patch(callPath)
@@ -88,18 +92,18 @@ public class ApiWrapper {
                 .statusCode(statusCode)
                 .contentType(ContentType.JSON)
                 .log().ifValidationFails()
-                .body(nameCheckedField, equalTo(valueCheckedField));
+                .body(nameCheckField, equalTo(valueCheckField));
     }
 
 
     public static ValidatableResponse sendPatchRequest(RequestSpecification requestSpecification,
-                                                       String nameCheckedField,
-                                                       String valueCheckedField,
+                                                       String nameCheckField,
+                                                       String valueCheckField,
                                                        String callPath
     ) {
         return sendPatchRequest(requestSpecification,
-                nameCheckedField,
-                valueCheckedField,
+                nameCheckField,
+                valueCheckField,
                 callPath,
                 DEFAULT_STATUS_CODE_PATCH);
     }
@@ -146,4 +150,6 @@ public class ApiWrapper {
     public static void deleteRequest(RequestSpecification requestSpecification, String callPath) {
         deleteRequest(requestSpecification, callPath, DEFAULT_STATUS_CODE_DELETE);
     }
+
+
 }

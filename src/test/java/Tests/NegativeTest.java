@@ -19,7 +19,7 @@ public class NegativeTest extends BaseTestCase {
     @ParameterizedTest
     @ValueSource(strings = {"  ", ""})
     public void incorrectUserName(String input) {
-        int userId = getId("endPointUsers", "id");
+        int userId = getId("userPath", "id");
         String nameCheckedField = "name";
 
         try {
@@ -44,9 +44,20 @@ public class NegativeTest extends BaseTestCase {
     }
 
     @ParameterizedTest
+    @ValueSource(strings = {"  ", ""})
+    public void incorrectUserName1(String input) {
+        User newUser = TestDataHelper.createUser();
+        newUser.setName(input);
+        System.out.println(newUser);
+
+    }
+
+
+
+    @ParameterizedTest
     @ValueSource(strings = {"  ", "", "m"})
     public void incorrectUserGender(String input) {
-        int userId = getId("endPointUsers", "id");
+        int userId = getId("userPath", "id");
         String nameCheckedField = "gender";
 
         given()
@@ -67,7 +78,7 @@ public class NegativeTest extends BaseTestCase {
     @ParameterizedTest
     @ValueSource(strings = {"john_doe.gmail.com", "john_doe@gmail.com ", " john_doe@gmail.com", "@gmail.com"})
     public void incorrectUserEmail(String input) {
-        int userId = getId("endPointUsers", "id");
+        int userId = getId("userPath", "id");
         String nameCheckedField = "email";
 
         given()
@@ -88,10 +99,10 @@ public class NegativeTest extends BaseTestCase {
     @Test
 
     public void incorrectReturnUserEmail() {
-        int userId = getId("endPointUsers", "id");
+        int userId = getId("userPath", "id");
 
         String nameCheckedField = "email";
-        String valueCheckedField = getVolume("endPointUsers", "email");
+        String valueCheckedField = getVolume("userPath", "email");
 
         given()
                 .pathParams("id", userId)
@@ -117,7 +128,7 @@ public class NegativeTest extends BaseTestCase {
                 .contentType(ContentType.JSON)
                 .body(newUser)
                 .when()
-                .post(ConfigurationReader.get("endPointUsers"))
+                .post(ConfigurationReader.get("userPath"))
                 .then()
                 .assertThat()
                 .statusCode(401)
@@ -135,7 +146,7 @@ public class NegativeTest extends BaseTestCase {
                 .contentType(ContentType.JSON)
                 .body(newUser)
                 .when()
-                .post(ConfigurationReader.get("endPointUsers"))
+                .post(ConfigurationReader.get("userPath"))
                 .then()
                 .assertThat()
                 .statusCode(422)

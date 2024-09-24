@@ -1,10 +1,10 @@
 package Tests;
 
-
 import PODJO.User;
 import Utils.ApiWrapper;
 import Utils.ConfigurationReader;
 import Utils.TestDataHelper;
+
 import org.junit.jupiter.api.Test;
 
 import static Utils.ApiWrapper.*;
@@ -15,31 +15,10 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 
 public class UserTests extends BaseTestCase {
-    @Test
-    public void getListOfObjects() {
-        sendGetRequest(
-                ConfigurationReader.get("endPointUsers"))
-                .assertThat()
-                .body("$", hasSize(10));
-    }
-
-    @Test
-    public void getListParamObjectsUsers() {
-        String page = "12";
-        String perPage = "33";
-
-        sendGetRequest(
-                given().pathParams("page", page,
-                        "perPage", perPage),
-                (ConfigurationReader.get("endPointUsers") + "?page={page}&per_page={perPage}"))
-                .assertThat()
-                .body("$", hasSize(Integer.parseInt(perPage)));
-    }
-
 
     @Test
     public void schemeUserValidationTest() {
-        int userId = getId("endPointUsers", "id");
+        int userId = getId("userPath", "id");
         sendGetRequest(
                 given().pathParams("id", userId),
                 ConfigurationReader.get("userIdPath"))
@@ -47,48 +26,40 @@ public class UserTests extends BaseTestCase {
                 .body(matchesJsonSchemaInClasspath("schemaUser.json"));
     }
 
+
     @Test
-    public void newUserCreation() {
+    public void createNewUserTest() {
 
         User newUser = TestDataHelper.createUser();
 
-        User actualClient =
+        User responseUser =
                 ApiWrapper.sendPostRequest(
-                        ConfigurationReader.get("endPointUsers"),
+                        ConfigurationReader.get("userPath"),
                         newUser,
                         User.class);
 
-        assertEquals(actualClient, newUser);
+        assertEquals(responseUser, newUser);
     }
 
     @Test
-    public void deleteUser() {
+    public void renameUserTest() {
+        int userId = getId("userPath", "id");
 
-        int userId = getId("endPointUsers", "id");
-
-        deleteRequest(
-                given().pathParams("id", userId),
-                ConfigurationReader.get("userIdPath"));
-    }
-
-    @Test
-    public void patchNameUsers() {
-        int userId = getId("endPointUsers", "id");
-
-        String nameCheckedField = "name";
-        String valueCheckedField = "John_Doe";
+        String nameCheckField = "name";
+        String valueCheckField = "John_Doe";
 
         sendPatchRequest(
                 given().pathParams("id", userId),
-                nameCheckedField,
-                valueCheckedField,
+                nameCheckField,
+                valueCheckField,
                 ConfigurationReader.get("userIdPath"));
     }
 
-    @Test
-    public void putNameUser() {
 
-        int userId = getId("endPointUsers", "id");
+    @Test
+    public void updateUserDetailsTest() {
+
+        int userId = getId("userPath", "id");
 
         User newUser = TestDataHelper.createUser();
         newUser.setName("John_Doe");
@@ -100,6 +71,39 @@ public class UserTests extends BaseTestCase {
                         newUser,
                         User.class);
         assertEquals(actualClient, newUser);
+    }
+    
+    
+    @Test
+    public void getListUsersTest() {
+        sendGetRequest(
+                ConfigurationReader.get("userPath"))
+                .assertThat()
+                .body("$", hasSize(10));
+    }
+
+    @Test
+    public void getListUsersByParametersTest() {
+        String numPage = "12";
+        String countUsers = "33";
+
+        sendGetRequest(
+                given().pathParams("numPage", numPage,
+                        "countUsers", countUsers),
+                (ConfigurationReader.get("userPath") + "?page={numPage}&per_page={countUsers}"))
+                .assertThat()
+                .body("$", hasSize(Integer.parseInt(countUsers)));
+    }
+
+
+    @Test
+    public void deleteUserTest() {
+
+        int userId = getId("userPath", "id");
+
+        deleteRequest(
+                given().pathParams("id", userId),
+                ConfigurationReader.get("userIdPath"));
     }
 
 }
