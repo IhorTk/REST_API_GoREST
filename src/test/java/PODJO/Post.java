@@ -16,6 +16,7 @@ public class Post {
     public int getUserId() {
         return userId;
     }
+
     @JsonSetter("user_id")
     public void setUserId(int userID) {
         this.userId = userID;

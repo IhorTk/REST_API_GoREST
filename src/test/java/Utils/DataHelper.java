@@ -1,6 +1,6 @@
 package Utils;
 
-import PODJO.Comments;
+import PODJO.Comment;
 import PODJO.Post;
 import PODJO.Todos;
 import PODJO.User;
@@ -12,7 +12,7 @@ import java.time.format.DateTimeFormatter;
 import static java.time.LocalDateTime.now;
 
 
-public class TestDataHelper {
+public class DataHelper {
     static Faker faker = new Faker();
 
     public static User createUser() {
@@ -25,8 +25,8 @@ public class TestDataHelper {
         return user;
     }
 
-    public static Comments createComments(int postId) {
-        Comments comments = new Comments();
+    public static Comment createComments(int postId) {
+        Comment comments = new Comment();
         comments.setPostId(postId);
         comments.setName(faker.name().firstName() + faker.name().lastName() + now());
         comments.setEmail(faker.internet().emailAddress());

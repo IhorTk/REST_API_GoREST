@@ -3,11 +3,13 @@ package Tests;
 import PODJO.Post;
 import Utils.ApiWrapper;
 import Utils.ConfigurationReader;
-import Utils.TestDataHelper;
+import Utils.GetDataHelper;
+import Utils.DataHelper;
 import io.restassured.response.Response;
 import org.junit.jupiter.api.Test;
 
 import static Utils.ApiWrapper.*;
+import static Utils.GetDataHelper.getListId;
 import static io.restassured.RestAssured.given;
 import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInClasspath;
 import static org.hamcrest.Matchers.hasSize;
@@ -17,7 +19,7 @@ public class PostTest extends BaseTestCase {
 
     @Test
     public void schemePostValidationTest() {
-        int postUserId = getId("postPath", "user_id");
+        int postUserId = GetDataHelper.getId("postPath", "user_id");
 
         sendGetRequest(
                 given().pathParams("id", postUserId),
@@ -28,79 +30,80 @@ public class PostTest extends BaseTestCase {
     }
 
     @Test
-    public void getListParamObjectsPosts() {
-        String page = "4";
-        String perPage = "80";
+    public void createPostTest() {
+        int postUserId = GetDataHelper.getId("postPath", "user_id");
 
-        sendGetRequest(
-                given().pathParams("page", page,
-                        "perPage", perPage),
-                ConfigurationReader.get("postPath")
-                        + "?page={page}&per_page={perPage}")
-                .assertThat()
-                .body("$", hasSize(Integer.parseInt(perPage)));
-    }
-
-
-    @Test
-    public void newPostCreation() {
-        int postUserId = getId("postPath", "user_id");
-
-        Post newPost = TestDataHelper.createPost(postUserId);
-        Post actualPost =
-                ApiWrapper.sendPostRequest(
+        Post newPost = DataHelper.createPost(postUserId);
+        Post responsePost =
+                sendPostRequest(
                         given().pathParams("id", postUserId),
                         ConfigurationReader.get("userIdPath")
                                 + ConfigurationReader.get("postPath"),
                         newPost,
                         Post.class);
 
-        assertEquals(actualPost, newPost);
+        assertEquals(responsePost, newPost);
     }
+    
+    
+    @Test
+    public void getListPostsByParameterTest() {
+        String numPage = "4";
+        String countPosts = "80";
+
+        sendGetRequest(
+                given().pathParams("numPage", numPage,
+                        "countPosts", countPosts),
+                ConfigurationReader.get("postPath")
+                        + "?page={numPage}&per_page={countPosts}")
+                .assertThat()
+                .body("$", hasSize(Integer.parseInt(countPosts)));
+    }
+    
 
     @Test
-    public void deletePost() {
+    public void changeTitlePost() {
 
-        int postId = getId("postPath", "id");
-
-        deleteRequest(
-                given().pathParams("id", postId),
-                ConfigurationReader.get("postIdPath"));
-    }
-
-    @Test
-    public void patchTitlePost() {
-
-        int postId = getId("postPath", "id");
-        String nameCheckedField = "title";
-        String valueCheckedField = "John_Doe";
+        int postId = GetDataHelper.getId("postPath", "id");
+        String nameField = "title";
+        String valueField = "John_Doe";
 
         sendPatchRequest(
                 given().pathParams("id", postId),
-                nameCheckedField,
-                valueCheckedField,
+                nameField,
+                valueField,
                 ConfigurationReader.get("postIdPath"));
     }
 
     @Test
 
-    public void putTitlePost() {
+    public void changePost() {
 
         Response response = getListId("postPath");
         int userId = response.jsonPath().getInt("[0]."+"user_id");
         int id = response.jsonPath().getInt("[0]."+"id");
-
-
-        Post newPost = TestDataHelper.createPost(id);
+        
+        Post newPost = DataHelper.createPost(id);
         newPost.setTitle("John_Doe");
         newPost.setUserId(userId);
 
-        Post actualPost =
+        Post responsePost =
                 ApiWrapper.sendPutRequest(
                         given().pathParams("id", id),
                         ConfigurationReader.get("postIdPath"),
                         newPost,
                         Post.class);
-        assertEquals(actualPost, newPost);
+        assertEquals(responsePost, newPost);
     }
+
+    @Test
+    public void deletePostTest() {
+
+        int postId = GetDataHelper.getId("postPath", "id");
+
+        deleteRequest(
+                given().pathParams("id", postId),
+                ConfigurationReader.get("postIdPath"));
+    }
+    
 }

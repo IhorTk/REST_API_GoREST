@@ -3,11 +3,12 @@ package Tests;
 import PODJO.User;
 import Utils.ApiWrapper;
 import Utils.ConfigurationReader;
-import Utils.TestDataHelper;
+import Utils.DataHelper;
 
 import org.junit.jupiter.api.Test;
 
 import static Utils.ApiWrapper.*;
+import static Utils.GetDataHelper.getId;
 import static io.restassured.RestAssured.given;
 import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInClasspath;
 import static org.hamcrest.Matchers.hasSize;
@@ -30,7 +31,7 @@ public class UserTests extends BaseTestCase {
     @Test
     public void createNewUserTest() {
 
-        User newUser = TestDataHelper.createUser();
+        User newUser = DataHelper.createUser();
 
         User responseUser =
                 ApiWrapper.sendPostRequest(
@@ -45,13 +46,13 @@ public class UserTests extends BaseTestCase {
     public void renameUserTest() {
         int userId = getId("userPath", "id");
 
-        String nameCheckField = "name";
-        String valueCheckField = "John_Doe";
+        String nameField = "name";
+        String valueField = "John_Doe";
 
         sendPatchRequest(
                 given().pathParams("id", userId),
-                nameCheckField,
-                valueCheckField,
+                nameField,
+                valueField,
                 ConfigurationReader.get("userIdPath"));
     }
 
@@ -61,7 +62,7 @@ public class UserTests extends BaseTestCase {
 
         int userId = getId("userPath", "id");
 
-        User newUser = TestDataHelper.createUser();
+        User newUser = DataHelper.createUser();
         newUser.setName("John_Doe");
 
         User actualClient =

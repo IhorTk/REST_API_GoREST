@@ -5,13 +5,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d2909f09-5314-4fa0-81db-822c2bd7f4fb" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/test/java/Tests/NegativeUserTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/Utils/GetDataHelper.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/Tests/NegativeTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/Tests/NegativeTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/PODJO/Comments.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/PODJO/Comment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/PODJO/Post.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/PODJO/Post.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/Tests/BaseTestCase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/Tests/BaseTestCase.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/Tests/CommentsTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/Tests/CommentsTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/Tests/NegativeTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/Tests/PostTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/Tests/PostTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/Tests/TodosTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/Tests/TodosTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/Tests/UserTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/Tests/UserTests.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/Utils/ApiWrapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/Utils/ApiWrapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/resources/configuration.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/configuration.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/Utils/TestDataHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/Utils/DataHelper.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -84,7 +90,7 @@
       <recent name="Utils" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.NegativeTest.incorrectUserName1">
+  <component name="RunManager">
     <configuration name="CommentsTest.newCommentPostsCreation" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="REST_API_GoREST" />
       <extension name="coverage">
@@ -101,7 +107,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="NegativeTest.incorrectUserName1" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="NegativeUserTest.incorrectUserName1" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="REST_API_GoREST" />
       <extension name="coverage">
         <pattern>
@@ -110,7 +116,7 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="Tests" />
-      <option name="MAIN_CLASS_NAME" value="Tests.NegativeTest" />
+      <option name="MAIN_CLASS_NAME" value="Tests.NegativeUserTest" />
       <option name="METHOD_NAME" value="incorrectUserName1(java.lang.String)" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
@@ -167,7 +173,7 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.NegativeTest.incorrectUserName1" />
+        <item itemvalue="JUnit.NegativeUserTest.incorrectUserName1" />
         <item itemvalue="JUnit.PostTest.newPostCreation" />
         <item itemvalue="JUnit.CommentsTest.newCommentPostsCreation" />
         <item itemvalue="JUnit.UserTests.getUsers2" />

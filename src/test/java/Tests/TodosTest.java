@@ -3,11 +3,13 @@ package Tests;
 import PODJO.Todos;
 import Utils.ApiWrapper;
 import Utils.ConfigurationReader;
-import Utils.TestDataHelper;
+import Utils.DataHelper;
 import io.restassured.response.Response;
 import org.junit.jupiter.api.Test;
 
 import static Utils.ApiWrapper.*;
+import static Utils.GetDataHelper.getId;
+import static Utils.GetDataHelper.getListId;
 import static io.restassured.RestAssured.given;
 import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInClasspath;
 import static org.hamcrest.Matchers.hasSize;
@@ -32,42 +34,42 @@ public class TodosTest extends BaseTestCase {
 
         int userId = getId("userPath", "id");
 
-        Todos newUsersTodo = TestDataHelper.createTodos(userId);
+        Todos newTodo = DataHelper.createTodos(userId);
 
-        Todos actualUsersTodo =
+        Todos responseTodo =
                 ApiWrapper.sendPostRequest(
                         given().pathParams("id", userId),
                         ConfigurationReader.get("userIdPath")
                                 + ConfigurationReader.get("toDosPath"),
-                        newUsersTodo,
+                        newTodo,
                         Todos.class);
-        assertEquals(actualUsersTodo, newUsersTodo);
+        assertEquals(responseTodo, newTodo);
     }
 
 
     @Test
     public void renameToDosTest() {
-        int userId = getId("toDosPath", "id");
+        int toDoId = getId("toDosPath", "id");
 
-        String nameCheckedField = "title";
-        String valueCheckedField = "New ToDos";
+        String nameField = "title";
+        String valueField = "New ToDos";
 
         sendPatchRequest(
-                given().pathParams("id", userId),
-                nameCheckedField,
-                valueCheckedField,
+                given().pathParams("id", toDoId),
+                nameField,
+                valueField,
                 ConfigurationReader.get("toDosIdPath"));
     }
 
 
     @Test
-    public void putTitleTodoTest() {
+    public void changeTodoTest() {
 
         Response response = getListId("toDosPath");
         int userId = response.jsonPath().getInt("[0]."+"user_id");
         int id = response.jsonPath().getInt("[0]."+"id");
 
-        Todos newTodos = TestDataHelper.createTodos(userId);
+        Todos newTodos = DataHelper.createTodos(userId);
         newTodos.setTitle("John_Doe");
         newTodos.setId(id);
         Todos actualTodos =
@@ -81,7 +83,7 @@ public class TodosTest extends BaseTestCase {
 
 
     @Test
-    public void getListToDosByParameters() {
+    public void getListToDosByParametersTest() {
         String numPage = "5";
         String countToDos = "40";
 
@@ -96,7 +98,7 @@ public class TodosTest extends BaseTestCase {
 
 
     @Test
-    public void deleteToDo() {
+    public void deleteToDosTest() {
 
         int userId = getId("toDosPath", "id");
 

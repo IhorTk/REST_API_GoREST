@@ -1,13 +1,15 @@
 package Tests;
 
-import PODJO.Comments;
+import PODJO.Comment;
 import Utils.ApiWrapper;
 import Utils.ConfigurationReader;
-import Utils.TestDataHelper;
+import Utils.GetDataHelper;
+import Utils.DataHelper;
 import io.restassured.response.Response;
 import org.junit.jupiter.api.Test;
 
 import static Utils.ApiWrapper.*;
+import static Utils.GetDataHelper.getListId;
 import static io.restassured.RestAssured.given;
 import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInClasspath;
 import static org.hamcrest.Matchers.hasSize;
@@ -23,77 +25,76 @@ public class CommentsTest extends BaseTestCase {
     }
 
     @Test
-    public void getListParamObjectsComments() {
-        String page = "5";
-        String perPage = "50";
+    public void createNewCommentForPostTest() {
+        int postId = GetDataHelper.getId("commentsPath", "post_id");
 
-        sendGetRequest(
-                given().pathParams("page",
-                        page, "perPage", perPage),
-                 ConfigurationReader.get("commentsPath")
-                        + "?page={page}&per_page={perPage}")
-                .assertThat()
-                .body("$", hasSize(Integer.parseInt(perPage)));
-    }
+        Comment newComment = DataHelper.createComments(postId);
 
-    @Test
-    public void newCommentPostsCreation() {
-        int postId = getId("commentsPath", "post_id");
-
-        Comments newPCommentsPost = TestDataHelper.createComments(postId);
-
-        Comments actualComments =
+        Comment responseComment =
                 ApiWrapper.sendPostRequest(
                         given().pathParams("id", postId),
                         ConfigurationReader.get("postIdPath")
                                 + ConfigurationReader.get("commentsPath"),
-                        newPCommentsPost,
-                        Comments.class);
-        assertEquals(actualComments, newPCommentsPost);
+                        newComment,
+                        Comment.class);
+        assertEquals(responseComment, newComment);
     }
 
     @Test
-    public void deleteComment() {
+    public void getListCommentsByParametersTest() {
+        String numPage = "5";
+        String countComments = "50";
 
-        int postId = getId("commentsPath", "id");
-
-        deleteRequest(given().pathParams("id", postId),
-                ConfigurationReader.get("commentsIdPath"));
+        sendGetRequest(
+                given().pathParams("numPage",
+                        numPage, "countComments", countComments),
+                 ConfigurationReader.get("commentsPath")
+                        + "?page={numPage}&per_page={countComments}")
+                .assertThat()
+                .body("$", hasSize(Integer.parseInt(countComments)));
     }
 
-    @Test
-    public void patchNameComment() {
-        int postId = getId("commentsPath", "id");
 
-        String nameCheckedField = "name";
-        String valueCheckedField = "JOHN_DOE";
+    @Test
+    public void changeNameCommentTest() {
+        int postId = GetDataHelper.getId("commentsPath", "id");
+
+        String nameField = "name";
+        String valueField = "JOHN_DOE";
 
         sendPatchRequest(
                 given().pathParams("id", postId),
-                nameCheckedField,
-                valueCheckedField,
+                nameField,
+                valueField,
                 ConfigurationReader.get("commentsIdPath"));
     }
 
     @Test
-      public void putNameComment() {
+      public void updateCommentTest() {
 
         Response response = getListId("commentsPath");
         int id = response.jsonPath().getInt("[0]."+"id");
         int postId = response.jsonPath().getInt("[0]."+"post_id");
 
-        Comments comments = TestDataHelper.createComments(postId);
-
+        Comment comments = DataHelper.createComments(postId);
         comments.setName("John_Doe");
 
-
-        Comments actualComments =
+        Comment responseComment =
                 ApiWrapper.sendPutRequest(
                         given().pathParams("id", id),
                         ConfigurationReader.get("commentsIdPath"),
                         comments,
-                        Comments.class);
+                        Comment.class);
 
-        assertEquals(actualComments, comments);
+        assertEquals(responseComment, comments);
+    }
+
+    @Test
+    public void deleteCommentTest() {
+
+        int postId = GetDataHelper.getId("commentsPath", "id");
+
+        deleteRequest(given().pathParams("id", postId),
+                ConfigurationReader.get("commentsIdPath"));
     }
 }

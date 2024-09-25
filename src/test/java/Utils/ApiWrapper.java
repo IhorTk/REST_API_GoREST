@@ -1,6 +1,5 @@
 package Utils;
 
-import PODJO.User;
 import io.restassured.http.ContentType;
 import io.restassured.response.ValidatableResponse;
 import io.restassured.specification.RequestSpecification;
@@ -16,6 +15,7 @@ public class ApiWrapper {
     private final static int DEFAULT_STATUS_CODE_PUT = 200;
     private final static int DEFAULT_STATUS_CODE_DELETE = 204;
     private final static int DEFAULT_STATUS_CODE_INCORRECT_DATA_USER = 422;
+    private final static int DEFAULT_STATUS_CODE_AUTHENTICATION_FAILED = 401;
 
     public final static String TOKEN = "3219774c6a08359bb949e19dc6b32eae3dcd8c1be5245554af65b3b6eab6aa43";
 
@@ -44,13 +44,6 @@ public class ApiWrapper {
         return sendPostRequest(given(), endpoint, requestBody, DEFAULT_STATUS_CODE_POST, responseType);
     }
 
-
-
-    public static <T> T sendPostRequest(String endpoint, T requestBody, int statusCode, Class<T> responseType) {
-
-        return sendPostRequest(given(), endpoint, requestBody, statusCode, responseType);
-    }
-
     public static <T> T sendPostRequest(RequestSpecification requestSpecification, String endpoint, T requestBody, Class<T> responseType) {
 
         return sendPostRequest(requestSpecification, endpoint, requestBody, DEFAULT_STATUS_CODE_POST, responseType);
@@ -77,14 +70,14 @@ public class ApiWrapper {
 
 
     public static ValidatableResponse sendPatchRequest(RequestSpecification requestSpecification,
-                                                       String nameCheckField,
-                                                       String valueCheckField,
+                                                       String nameField,
+                                                       String valueField,
                                                        String callPath,
                                                        int statusCode) {
         return given()
                 .filter(new AuthenticationFilter(TOKEN))
                 .spec(requestSpecification)
-                .body("{ \"" + nameCheckField + "\": \"" + valueCheckField + "\" }")
+                .body("{ \"" + nameField + "\": \"" + valueField + "\" }")
                 .contentType(ContentType.JSON)
                 .when()
                 .patch(callPath)
@@ -92,18 +85,18 @@ public class ApiWrapper {
                 .statusCode(statusCode)
                 .contentType(ContentType.JSON)
                 .log().ifValidationFails()
-                .body(nameCheckField, equalTo(valueCheckField));
+                .body(nameField, equalTo(valueField));
     }
 
 
     public static ValidatableResponse sendPatchRequest(RequestSpecification requestSpecification,
-                                                       String nameCheckField,
-                                                       String valueCheckField,
+                                                       String nameField,
+                                                       String valueField,
                                                        String callPath
     ) {
         return sendPatchRequest(requestSpecification,
-                nameCheckField,
-                valueCheckField,
+                nameField,
+                valueField,
                 callPath,
                 DEFAULT_STATUS_CODE_PATCH);
     }
@@ -122,9 +115,6 @@ public class ApiWrapper {
                 .log().ifValidationFails();
     }
 
-    public static ValidatableResponse sendGetRequest(String callPath, int statusCode) {
-        return sendGetRequest(given(), callPath, statusCode);
-    }
 
     public static ValidatableResponse sendGetRequest(RequestSpecification requestSpecification, String callPath) {
         return sendGetRequest(requestSpecification, callPath, DEFAULT_STATUS_CODE_GET);
@@ -149,6 +139,50 @@ public class ApiWrapper {
 
     public static void deleteRequest(RequestSpecification requestSpecification, String callPath) {
         deleteRequest(requestSpecification, callPath, DEFAULT_STATUS_CODE_DELETE);
+    }
+
+    public static ValidatableResponse sendPostNegativeRequest(RequestSpecification requestSpecification,
+                                                              String endpoint,
+                                                              Object requestBody,
+                                                              int statusCode) {
+        return given()
+                .filter(new AuthenticationFilter(TOKEN))
+                .spec(requestSpecification)
+                .contentType(ContentType.JSON)
+                .body(requestBody)
+                .when()
+                .post(endpoint)
+                .then()
+                .assertThat()
+                .statusCode(statusCode)
+                .contentType(ContentType.JSON)
+                .log().ifValidationFails();
+    }
+
+    public static ValidatableResponse sendPostNegativeRequest(String endpoint, Object requestBody) {
+        return sendPostNegativeRequest(given(), endpoint, requestBody,  DEFAULT_STATUS_CODE_INCORRECT_DATA_USER);
+
+    }
+
+    public static ValidatableResponse sendPostWithoutAuthRequest(RequestSpecification requestSpecification,
+                                                              String endpoint,
+                                                              Object requestBody,
+                                                              int statusCode) {
+        return given()
+                .spec(requestSpecification)
+                .contentType(ContentType.JSON)
+                .body(requestBody)
+                .when()
+                .post(endpoint)
+                .then()
+                .assertThat()
+                .statusCode(statusCode)
+                .contentType(ContentType.JSON)
+                .log().ifValidationFails();
+    }
+
+    public static ValidatableResponse sendPostWithoutAuthRequest(String endpoint, Object requestBody) {
+        return sendPostWithoutAuthRequest(given(), endpoint, requestBody,  DEFAULT_STATUS_CODE_AUTHENTICATION_FAILED);
     }
 
 

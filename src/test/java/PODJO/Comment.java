@@ -2,7 +2,7 @@ package PODJO;
 
 import com.fasterxml.jackson.annotation.JsonSetter;
 
-public class Comments {
+public class Comment {
     private int id;
     private int postId;
     private String name;
@@ -55,7 +55,7 @@ public class Comments {
         if (this == obj) return true;
         if (obj == null || getClass() != obj.getClass()) return false;
 
-        Comments comments = (Comments) obj;
+        Comment comments = (Comment) obj;
 
         return getPostId() == comments.getPostId() &&
                 getName().equals(comments.getName()) &&
