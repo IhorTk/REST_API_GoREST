@@ -6,6 +6,7 @@ import Utils.ConfigurationReader;
 import Utils.GetDataHelper;
 import Utils.DataHelper;
 
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
@@ -42,5 +43,17 @@ public class NegativePostTest {
                         newPost)
                 .body("[0].field", equalTo("body"))
                 .body("[0].message", equalTo(ConfigurationReader.get("failBody")));
+    }
+
+    @Test
+    public void createPostLessToken() {
+        int userId = GetDataHelper.getId("userPath", "id");
+
+        Post newPost = DataHelper.createPost(userId);
+
+        ApiWrapper.sendPostWithoutAuthRequest(given()
+                        .pathParams("id", userId), ConfigurationReader.get("userIdPath")
+                        + ConfigurationReader.get("postPath"),newPost)
+                .body("message", equalTo(ConfigurationReader.get("failAuthentication")));
     }
 }
