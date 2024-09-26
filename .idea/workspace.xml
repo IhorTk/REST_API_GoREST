@@ -5,19 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d2909f09-5314-4fa0-81db-822c2bd7f4fb" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/test/java/Tests/NegativeUserTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/Utils/GetDataHelper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/Tests/NegativePostTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/junit-platform.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/PODJO/Comments.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/PODJO/Comment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/PODJO/Post.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/PODJO/Post.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/Tests/BaseTestCase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/Tests/BaseTestCase.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/Tests/CommentsTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/Tests/CommentsTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/Tests/NegativeTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/Tests/PostTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/Tests/PostTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/Tests/TodosTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/Tests/TodosTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/Tests/UserTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/Tests/UserTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/Tests/NegativeUserTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/Tests/NegativeUserTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/Utils/ApiWrapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/Utils/ApiWrapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/Utils/TestDataHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/Utils/DataHelper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/resources/configuration.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/configuration.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -58,6 +52,10 @@
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
     &quot;JUnit.CommentsTest.newCommentPostsCreation.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.NegativePostTest.incorrect.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.NegativePostTest.incorrectBodyPostTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.NegativePostTest.incorrectTitlePost.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.NegativePostTest.incorrectTitlePostTest.executor&quot;: &quot;Run&quot;,
     &quot;JUnit.NegativeTest.incorrectUserName1.executor&quot;: &quot;Run&quot;,
     &quot;JUnit.PostTest.newPostCreation.executor&quot;: &quot;Run&quot;,
     &quot;JUnit.UserTests.createNewUserTest.executor&quot;: &quot;Run&quot;,
@@ -66,6 +64,7 @@
     &quot;JUnit.UserTests.getUsers1.executor&quot;: &quot;Run&quot;,
     &quot;JUnit.UserTests.getUsers2.executor&quot;: &quot;Run&quot;,
     &quot;JUnit.UserTests.getUsersResponse.executor&quot;: &quot;Run&quot;,
+    &quot;Maven.REST_API_GoREST [clean].executor&quot;: &quot;Run&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;git-widget-placeholder&quot;: &quot;main&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
@@ -90,8 +89,8 @@
       <recent name="Utils" />
     </key>
   </component>
-  <component name="RunManager">
-    <configuration name="CommentsTest.newCommentPostsCreation" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="JUnit.NegativePostTest.incorrectBodyPostTest">
+    <configuration name="NegativePostTest.incorrect" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="REST_API_GoREST" />
       <extension name="coverage">
         <pattern>
@@ -100,8 +99,56 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="Tests" />
-      <option name="MAIN_CLASS_NAME" value="Tests.CommentsTest" />
-      <option name="METHOD_NAME" value="newCommentPostsCreation" />
+      <option name="MAIN_CLASS_NAME" value="Tests.NegativePostTest" />
+      <option name="METHOD_NAME" value="incorrect(java.lang.String)" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="NegativePostTest.incorrectBodyPostTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="REST_API_GoREST" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="Tests.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="Tests" />
+      <option name="MAIN_CLASS_NAME" value="Tests.NegativePostTest" />
+      <option name="METHOD_NAME" value="incorrectBodyPostTest(java.lang.String)" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="NegativePostTest.incorrectTitlePost" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="REST_API_GoREST" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="Tests.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="Tests" />
+      <option name="MAIN_CLASS_NAME" value="Tests.NegativePostTest" />
+      <option name="METHOD_NAME" value="incorrectTitlePost(java.lang.String)" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="NegativePostTest.incorrectTitlePostTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="REST_API_GoREST" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="Tests.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="Tests" />
+      <option name="MAIN_CLASS_NAME" value="Tests.NegativePostTest" />
+      <option name="METHOD_NAME" value="incorrectTitlePostTest(java.lang.String)" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -123,61 +170,13 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="PostTest.newPostCreation" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="REST_API_GoREST" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="Tests.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="Tests" />
-      <option name="MAIN_CLASS_NAME" value="Tests.PostTest" />
-      <option name="METHOD_NAME" value="newPostCreation" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="UserTests.getUsers" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="REST_API_GoREST" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="Tests.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="Tests" />
-      <option name="MAIN_CLASS_NAME" value="Tests.UserTests" />
-      <option name="METHOD_NAME" value="getUsers" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="UserTests.getUsers2" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="REST_API_GoREST" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="Tests.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="Tests" />
-      <option name="MAIN_CLASS_NAME" value="Tests.UserTests" />
-      <option name="METHOD_NAME" value="getUsers2" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.NegativePostTest.incorrectBodyPostTest" />
+        <item itemvalue="JUnit.NegativePostTest.incorrectTitlePostTest" />
+        <item itemvalue="JUnit.NegativePostTest.incorrect" />
+        <item itemvalue="JUnit.NegativePostTest.incorrectTitlePost" />
         <item itemvalue="JUnit.NegativeUserTest.incorrectUserName1" />
-        <item itemvalue="JUnit.PostTest.newPostCreation" />
-        <item itemvalue="JUnit.CommentsTest.newCommentPostsCreation" />
-        <item itemvalue="JUnit.UserTests.getUsers2" />
-        <item itemvalue="JUnit.UserTests.getUsers" />
       </list>
     </recent_temporary>
   </component>

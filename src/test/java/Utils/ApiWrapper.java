@@ -14,10 +14,10 @@ public class ApiWrapper {
     private final static int DEFAULT_STATUS_CODE_POST = 201;
     private final static int DEFAULT_STATUS_CODE_PUT = 200;
     private final static int DEFAULT_STATUS_CODE_DELETE = 204;
-    private final static int DEFAULT_STATUS_CODE_INCORRECT_DATA_USER = 422;
+    private final static int DEFAULT_STATUS_CODE_INCORRECT_DATA = 422;
     private final static int DEFAULT_STATUS_CODE_AUTHENTICATION_FAILED = 401;
 
-    public final static String TOKEN = "3219774c6a08359bb949e19dc6b32eae3dcd8c1be5245554af65b3b6eab6aa43";
+    public final static String TOKEN = ConfigurationReader.get("token");
 
     public static <T> T sendPostRequest(RequestSpecification requestSpecification,
                                         String endpoint,
@@ -92,8 +92,7 @@ public class ApiWrapper {
     public static ValidatableResponse sendPatchRequest(RequestSpecification requestSpecification,
                                                        String nameField,
                                                        String valueField,
-                                                       String callPath
-    ) {
+                                                       String callPath) {
         return sendPatchRequest(requestSpecification,
                 nameField,
                 valueField,
@@ -160,7 +159,12 @@ public class ApiWrapper {
     }
 
     public static ValidatableResponse sendPostNegativeRequest(String endpoint, Object requestBody) {
-        return sendPostNegativeRequest(given(), endpoint, requestBody,  DEFAULT_STATUS_CODE_INCORRECT_DATA_USER);
+        return sendPostNegativeRequest(given(), endpoint, requestBody, DEFAULT_STATUS_CODE_INCORRECT_DATA);
+
+    }
+
+    public static ValidatableResponse sendPostNegativeRequest(RequestSpecification requestSpecification, String endpoint, Object requestBody) {
+        return sendPostNegativeRequest(requestSpecification, endpoint, requestBody, DEFAULT_STATUS_CODE_INCORRECT_DATA);
 
     }
 
@@ -183,6 +187,10 @@ public class ApiWrapper {
 
     public static ValidatableResponse sendPostWithoutAuthRequest(String endpoint, Object requestBody) {
         return sendPostWithoutAuthRequest(given(), endpoint, requestBody,  DEFAULT_STATUS_CODE_AUTHENTICATION_FAILED);
+    }
+
+    public static ValidatableResponse sendPostWithoutAuthRequest(RequestSpecification requestSpecification, String endpoint, Object requestBody) {
+        return sendPostWithoutAuthRequest(requestSpecification, endpoint, requestBody,  DEFAULT_STATUS_CODE_AUTHENTICATION_FAILED);
     }
 
 

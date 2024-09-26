@@ -21,7 +21,7 @@ public class NegativeUserTest extends BaseTestCase {
         ApiWrapper.sendPostNegativeRequest(ConfigurationReader.get("userPath"),
                 newUser)
                 .body("[0].field", equalTo("name"))
-                .body("[0].message", equalTo("can't be blank"));
+                .body("[0].message", equalTo(ConfigurationReader.get("failName")));
     }
 
     @ParameterizedTest
@@ -32,7 +32,7 @@ public class NegativeUserTest extends BaseTestCase {
         ApiWrapper.sendPostNegativeRequest(ConfigurationReader.get("userPath"),
                         newUser)
                 .body("[0].field", equalTo("gender"))
-                .body("[0].message", equalTo("can't be blank, can be male of female"));
+                .body("[0].message", equalTo(ConfigurationReader.get("failGender")));
     }
 
     @ParameterizedTest
@@ -43,7 +43,7 @@ public class NegativeUserTest extends BaseTestCase {
         ApiWrapper.sendPostNegativeRequest(ConfigurationReader.get("userPath"),
                         newUser)
                 .body("[0].field", equalTo("email"))
-                .body("[0].message", equalTo("is invalid"));
+                .body("[0].message", equalTo(ConfigurationReader.get("failEmail")));
     }
 
     @Test
@@ -54,7 +54,7 @@ public class NegativeUserTest extends BaseTestCase {
         ApiWrapper.sendPostNegativeRequest(ConfigurationReader.get("userPath"),
                         newUser)
                 .body("[0].field", equalTo("email"))
-                .body("[0].message", equalTo("has already been taken"));
+                .body("[0].message", equalTo(ConfigurationReader.get("failEmailExist")));
     }
 
 
@@ -63,6 +63,6 @@ public class NegativeUserTest extends BaseTestCase {
         User newUser = DataHelper.createUser();
 
         ApiWrapper.sendPostWithoutAuthRequest(ConfigurationReader.get("userPath"),newUser)
-                .body("message", equalTo("Authentication failed"));
+                .body("message", equalTo(ConfigurationReader.get("failAuthentication")));
     }
 }
