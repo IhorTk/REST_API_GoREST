@@ -17,13 +17,13 @@ public class NegativeUserTest extends BaseTestCase {
     @ParameterizedTest
 //    @CsvFileSource(resources = "src/test/resources/paramGoRestTest.csv", numLinesToSkip = 1)
     @ValueSource(strings = {"  ", ""})
-    public void incorrectUserNameTest(String input,String field, String message) {
+    public void incorrectUserNameTest(String input) {
         User newUser = DataHelper.createUser();
         newUser.setName(input);
         ApiWrapper.sendPostNegativeRequest(ConfigurationReader.get("userPath"),
                 newUser)
-                .body("[0].field", equalTo(field))
-                .body("[0].message", equalTo(message));
+                .body("[0].field", equalTo("name"))
+                .body("[0].message", equalTo(ConfigurationReader.get("failName")));
     }
 
     @ParameterizedTest
