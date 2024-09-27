@@ -14,6 +14,7 @@ import static org.hamcrest.Matchers.equalTo;
 public class NegativeUserTest extends BaseTestCase {
 
     @ParameterizedTest
+//    @CsvFileSource (resources = "src/test/resources/paramGoRestTest.csv", numLinesToSkip = 1)
     @ValueSource(strings = {"  ", ""})
     public void incorrectUserNameTest(String input) {
         User newUser = DataHelper.createUser();
