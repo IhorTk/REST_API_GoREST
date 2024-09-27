@@ -4,7 +4,19 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d2909f09-5314-4fa0-81db-822c2bd7f4fb" name="Changes" comment="" />
+    <list default="true" id="d2909f09-5314-4fa0-81db-822c2bd7f4fb" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/src/test/java/PODJO/Comment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/POJO/Comment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/PODJO/Post.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/POJO/Post.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/PODJO/Todos.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/POJO/Todos.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/PODJO/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/POJO/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/Tests/CommentsTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/Tests/CommentsTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/Tests/NegativePostTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/Tests/NegativePostTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/Tests/NegativeUserTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/Tests/NegativeUserTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/Tests/PostTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/Tests/PostTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/Tests/TodosTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/Tests/TodosTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/Tests/UserTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/Tests/UserTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/Utils/PODJODataHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/Utils/PODJODataHelper.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -49,6 +61,7 @@
     "JUnit.NegativePostTest.incorrectTitlePost.executor": "Run",
     "JUnit.NegativePostTest.incorrectTitlePostTest.executor": "Run",
     "JUnit.NegativeTest.incorrectUserName1.executor": "Run",
+    "JUnit.NegativeUserTest.incorrectUserNameTest (1).executor": "Run",
     "JUnit.NegativeUserTest.incorrectUserNameTest.executor": "Run",
     "JUnit.PostTest.newPostCreation.executor": "Run",
     "JUnit.UserTests.createNewUserTest.executor": "Run",
@@ -83,7 +96,7 @@
       <recent name="Utils" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.NegativeUserTest.incorrectUserNameTest">
+  <component name="RunManager" selected="JUnit.NegativeUserTest.incorrectUserNameTest (1)">
     <configuration name="NegativePostTest.createPostLessToken" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="REST_API_GoREST" />
       <extension name="coverage">
@@ -95,22 +108,6 @@
       <option name="PACKAGE_NAME" value="Tests" />
       <option name="MAIN_CLASS_NAME" value="Tests.NegativePostTest" />
       <option name="METHOD_NAME" value="createPostLessToken" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="NegativePostTest.incorrect" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="REST_API_GoREST" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="Tests.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="Tests" />
-      <option name="MAIN_CLASS_NAME" value="Tests.NegativePostTest" />
-      <option name="METHOD_NAME" value="incorrect(java.lang.String)" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -148,6 +145,22 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="NegativeUserTest.incorrectUserNameTest (1)" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="REST_API_GoREST" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="Tests.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="Tests" />
+      <option name="MAIN_CLASS_NAME" value="Tests.NegativeUserTest" />
+      <option name="METHOD_NAME" value="incorrectUserNameTest(java.lang.String)" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="NegativeUserTest.incorrectUserNameTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="REST_API_GoREST" />
       <extension name="coverage">
@@ -166,11 +179,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.NegativeUserTest.incorrectUserNameTest (1)" />
         <item itemvalue="JUnit.NegativeUserTest.incorrectUserNameTest" />
         <item itemvalue="JUnit.NegativePostTest.createPostLessToken" />
         <item itemvalue="JUnit.NegativePostTest.incorrectBodyPostTest" />
         <item itemvalue="JUnit.NegativePostTest.incorrectTitlePostTest" />
-        <item itemvalue="JUnit.NegativePostTest.incorrect" />
       </list>
     </recent_temporary>
   </component>

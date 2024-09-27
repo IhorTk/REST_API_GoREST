@@ -1,10 +1,10 @@
 package Tests;
 
-import PODJO.Post;
+import POJO.Post;
 import Utils.ApiWrapper;
 import Utils.ConfigurationReader;
 import Utils.TestDataHelper;
-import Utils.PODJODataHelper;
+import Utils.POJODataHelper;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -20,7 +20,7 @@ public class NegativePostTest {
     public void incorrectTitlePostTest(String input) {
         int postUserId = TestDataHelper.getId("userPath", "id");
 
-        Post newPost = PODJODataHelper.createPost(postUserId);
+        Post newPost = POJODataHelper.createPost(postUserId);
         newPost.setTitle(input);
         ApiWrapper.sendPostNegativeRequest(given()
                                 .pathParams("id", postUserId), ConfigurationReader.get("userIdPath")
@@ -35,7 +35,7 @@ public class NegativePostTest {
     public void incorrectBodyPostTest(String input) {
         int userId = TestDataHelper.getId("userPath", "id");
 
-        Post newPost = PODJODataHelper.createPost(userId);
+        Post newPost = POJODataHelper.createPost(userId);
         newPost.setBody(input);
         ApiWrapper.sendPostNegativeRequest(given()
                                 .pathParams("id", userId), ConfigurationReader.get("userIdPath")
@@ -49,7 +49,7 @@ public class NegativePostTest {
     public void createPostLessToken() {
         int userId = TestDataHelper.getId("userPath", "id");
 
-        Post newPost = PODJODataHelper.createPost(userId);
+        Post newPost = POJODataHelper.createPost(userId);
 
         ApiWrapper.sendPostWithoutAuthRequest(given()
                         .pathParams("id", userId), ConfigurationReader.get("userIdPath")

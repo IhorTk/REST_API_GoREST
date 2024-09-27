@@ -1,10 +1,10 @@
 package Tests;
 
-import PODJO.Comment;
+import POJO.Comment;
 import Utils.ApiWrapper;
 import Utils.ConfigurationReader;
 import Utils.TestDataHelper;
-import Utils.PODJODataHelper;
+import Utils.POJODataHelper;
 import io.restassured.response.Response;
 import org.junit.jupiter.api.Test;
 
@@ -28,7 +28,7 @@ public class CommentsTest extends BaseTestCase {
     public void createNewCommentForPostTest() {
         int postId = TestDataHelper.getId("commentsPath", "post_id");
 
-        Comment newComment = PODJODataHelper.createComments(postId);
+        Comment newComment = POJODataHelper.createComments(postId);
 
         Comment responseComment =
                 ApiWrapper.sendPostRequest(
@@ -76,7 +76,7 @@ public class CommentsTest extends BaseTestCase {
         int id = response.jsonPath().getInt("[0]."+"id");
         int postId = response.jsonPath().getInt("[0]."+"post_id");
 
-        Comment comments = PODJODataHelper.createComments(postId);
+        Comment comments = POJODataHelper.createComments(postId);
         comments.setName("John_Doe");
 
         Comment responseComment =

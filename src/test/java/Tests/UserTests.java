@@ -1,9 +1,9 @@
 package Tests;
 
-import PODJO.User;
+import POJO.User;
 import Utils.ApiWrapper;
 import Utils.ConfigurationReader;
-import Utils.PODJODataHelper;
+import Utils.POJODataHelper;
 
 import org.junit.jupiter.api.Test;
 
@@ -31,7 +31,7 @@ public class UserTests extends BaseTestCase {
     @Test
     public void createNewUserTest() {
 
-        User newUser = PODJODataHelper.createUser();
+        User newUser = POJODataHelper.createUser();
 
         User responseUser =
                 ApiWrapper.sendPostRequest(
@@ -62,7 +62,7 @@ public class UserTests extends BaseTestCase {
 
         int userId = getId("userPath", "id");
 
-        User newUser = PODJODataHelper.createUser();
+        User newUser = POJODataHelper.createUser();
         newUser.setName(ConfigurationReader.get("userName"));
 
         User actualClient =

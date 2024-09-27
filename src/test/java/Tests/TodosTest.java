@@ -1,9 +1,9 @@
 package Tests;
 
-import PODJO.Todos;
+import POJO.Todos;
 import Utils.ApiWrapper;
 import Utils.ConfigurationReader;
-import Utils.PODJODataHelper;
+import Utils.POJODataHelper;
 import io.restassured.response.Response;
 import org.junit.jupiter.api.Test;
 
@@ -34,7 +34,7 @@ public class TodosTest extends BaseTestCase {
 
         int userId = getId("userPath", "id");
 
-        Todos newTodo = PODJODataHelper.createTodos(userId);
+        Todos newTodo = POJODataHelper.createTodos(userId);
 
         Todos responseTodo =
                 ApiWrapper.sendPostRequest(
@@ -69,7 +69,7 @@ public class TodosTest extends BaseTestCase {
         int userId = response.jsonPath().getInt("[0]."+"user_id");
         int id = response.jsonPath().getInt("[0]."+"id");
 
-        Todos newTodos = PODJODataHelper.createTodos(userId);
+        Todos newTodos = POJODataHelper.createTodos(userId);
         newTodos.setTitle(ConfigurationReader.get("toDosTitle"));
         newTodos.setId(id);
         Todos actualTodos =

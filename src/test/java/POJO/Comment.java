@@ -1,4 +1,4 @@
-package PODJO;
+package POJO;
 
 import com.fasterxml.jackson.annotation.JsonSetter;
 

@@ -1,9 +1,9 @@
 package Utils;
 
-import PODJO.Comment;
-import PODJO.Post;
-import PODJO.Todos;
-import PODJO.User;
+import POJO.Comment;
+import POJO.Post;
+import POJO.Todos;
+import POJO.User;
 import com.github.javafaker.Faker;
 
 
@@ -12,7 +12,7 @@ import java.time.format.DateTimeFormatter;
 import static java.time.LocalDateTime.now;
 
 
-public class PODJODataHelper {
+public class POJODataHelper {
     static Faker faker = new Faker();
 
     public static User createUser() {

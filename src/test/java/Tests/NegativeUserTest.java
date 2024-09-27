@@ -1,9 +1,9 @@
 package Tests;
 
-import PODJO.User;
+import POJO.User;
 import Utils.ApiWrapper;
 import Utils.ConfigurationReader;
-import Utils.PODJODataHelper;
+import Utils.POJODataHelper;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -17,7 +17,7 @@ public class NegativeUserTest extends BaseTestCase {
 //    @CsvFileSource(resources = "src/test/resources/paramGoRestTest.csv", numLinesToSkip = 1)
     @ValueSource(strings = {"  ", ""})
     public void incorrectUserNameTest(String input) {
-        User newUser = PODJODataHelper.createUser();
+        User newUser = POJODataHelper.createUser();
         newUser.setName(input);
         ApiWrapper.sendPostNegativeRequest(ConfigurationReader.get("userPath"),
                 newUser)
@@ -28,7 +28,7 @@ public class NegativeUserTest extends BaseTestCase {
     @ParameterizedTest
     @ValueSource(strings = {"  ", "", "frau"})
     public void incorrectUserGenderTest(String input) {
-        User newUser = PODJODataHelper.createUser();
+        User newUser = POJODataHelper.createUser();
         newUser.setGender(input);
         ApiWrapper.sendPostNegativeRequest(ConfigurationReader.get("userPath"),
                         newUser)
@@ -39,7 +39,7 @@ public class NegativeUserTest extends BaseTestCase {
     @ParameterizedTest
     @ValueSource(strings = {"john_doe.var.com", "john_doe@var.com ", " john_doe@var.com", "@gmail.com"})
     public void incorrectUserEmailTest(String input) {
-        User newUser = PODJODataHelper.createUser();
+        User newUser = POJODataHelper.createUser();
         newUser.setEmail(input);
         ApiWrapper.sendPostNegativeRequest(ConfigurationReader.get("userPath"),
                         newUser)
@@ -50,7 +50,7 @@ public class NegativeUserTest extends BaseTestCase {
     @Test
     public void creatingUserWithExistingEmailTest() {
         String existingEmail = getVolume("userPath", "email");
-        User newUser = PODJODataHelper.createUser();
+        User newUser = POJODataHelper.createUser();
         newUser.setEmail(existingEmail);
         ApiWrapper.sendPostNegativeRequest(ConfigurationReader.get("userPath"),
                         newUser)
@@ -61,7 +61,7 @@ public class NegativeUserTest extends BaseTestCase {
 
     @Test
     public void createUserLessToken() {
-        User newUser = PODJODataHelper.createUser();
+        User newUser = POJODataHelper.createUser();
 
         ApiWrapper.sendPostWithoutAuthRequest(ConfigurationReader.get("userPath"),newUser)
                 .body("message", equalTo(ConfigurationReader.get("failAuthentication")));

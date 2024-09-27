@@ -1,10 +1,10 @@
 package Tests;
 
-import PODJO.Post;
+import POJO.Post;
 import Utils.ApiWrapper;
 import Utils.ConfigurationReader;
 import Utils.TestDataHelper;
-import Utils.PODJODataHelper;
+import Utils.POJODataHelper;
 import io.restassured.response.Response;
 import org.junit.jupiter.api.Test;
 
@@ -33,7 +33,7 @@ public class PostTest extends BaseTestCase {
     public void createPostTest() {
         int postUserId = TestDataHelper.getId("postPath", "user_id");
 
-        Post newPost = PODJODataHelper.createPost(postUserId);
+        Post newPost = POJODataHelper.createPost(postUserId);
         Post responsePost =
                 sendPostRequest(
                         given().pathParams("id", postUserId),
@@ -83,7 +83,7 @@ public class PostTest extends BaseTestCase {
         int userId = response.jsonPath().getInt("[0]."+"user_id");
         int id = response.jsonPath().getInt("[0]."+"id");
         
-        Post newPost = PODJODataHelper.createPost(id);
+        Post newPost = POJODataHelper.createPost(id);
         newPost.setTitle(ConfigurationReader.get("postFieldValue"));
         newPost.setUserId(userId);
 

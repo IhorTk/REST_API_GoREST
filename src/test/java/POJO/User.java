@@ -1,4 +1,4 @@
-package PODJO;
+package POJO;
 
 public class User {
     private int id;
