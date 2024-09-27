@@ -3,13 +3,13 @@ package Tests;
 import PODJO.Post;
 import Utils.ApiWrapper;
 import Utils.ConfigurationReader;
-import Utils.GetDataHelper;
-import Utils.DataHelper;
+import Utils.TestDataHelper;
+import Utils.PODJODataHelper;
 import io.restassured.response.Response;
 import org.junit.jupiter.api.Test;
 
 import static Utils.ApiWrapper.*;
-import static Utils.GetDataHelper.getListId;
+import static Utils.TestDataHelper.getListId;
 import static io.restassured.RestAssured.given;
 import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInClasspath;
 import static org.hamcrest.Matchers.hasSize;
@@ -19,7 +19,7 @@ public class PostTest extends BaseTestCase {
 
     @Test
     public void schemePostValidationTest() {
-        int postUserId = GetDataHelper.getId("postPath", "user_id");
+        int postUserId = TestDataHelper.getId("postPath", "user_id");
 
         sendGetRequest(
                 given().pathParams("id", postUserId),
@@ -31,9 +31,9 @@ public class PostTest extends BaseTestCase {
 
     @Test
     public void createPostTest() {
-        int postUserId = GetDataHelper.getId("postPath", "user_id");
+        int postUserId = TestDataHelper.getId("postPath", "user_id");
 
-        Post newPost = DataHelper.createPost(postUserId);
+        Post newPost = PODJODataHelper.createPost(postUserId);
         Post responsePost =
                 sendPostRequest(
                         given().pathParams("id", postUserId),
@@ -48,8 +48,8 @@ public class PostTest extends BaseTestCase {
     
     @Test
     public void getListPostsByParameterTest() {
-        String numPage = "4";
-        String countPosts = "80";
+        String numPage = ConfigurationReader.get("postNumPage");
+        String countPosts = ConfigurationReader.get("postCount");
 
         sendGetRequest(
                 given().pathParams("numPage", numPage,
@@ -64,9 +64,9 @@ public class PostTest extends BaseTestCase {
     @Test
     public void changeTitlePost() {
 
-        int postId = GetDataHelper.getId("postPath", "id");
-        String nameField = "title";
-        String valueField = "John_Doe";
+        int postId = TestDataHelper.getId("postPath", "id");
+        String nameField = ConfigurationReader.get("postFieldName");
+        String valueField = ConfigurationReader.get("postFieldValue");
 
         sendPatchRequest(
                 given().pathParams("id", postId),
@@ -83,8 +83,8 @@ public class PostTest extends BaseTestCase {
         int userId = response.jsonPath().getInt("[0]."+"user_id");
         int id = response.jsonPath().getInt("[0]."+"id");
         
-        Post newPost = DataHelper.createPost(id);
-        newPost.setTitle("John_Doe");
+        Post newPost = PODJODataHelper.createPost(id);
+        newPost.setTitle(ConfigurationReader.get("postFieldValue"));
         newPost.setUserId(userId);
 
         Post responsePost =
@@ -99,7 +99,7 @@ public class PostTest extends BaseTestCase {
     @Test
     public void deletePostTest() {
 
-        int postId = GetDataHelper.getId("postPath", "id");
+        int postId = TestDataHelper.getId("postPath", "id");
 
         deleteRequest(
                 given().pathParams("id", postId),

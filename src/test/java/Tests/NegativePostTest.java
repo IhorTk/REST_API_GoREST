@@ -3,12 +3,11 @@ package Tests;
 import PODJO.Post;
 import Utils.ApiWrapper;
 import Utils.ConfigurationReader;
-import Utils.GetDataHelper;
-import Utils.DataHelper;
+import Utils.TestDataHelper;
+import Utils.PODJODataHelper;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.CsvFileSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import static io.restassured.RestAssured.given;
@@ -19,9 +18,9 @@ public class NegativePostTest {
     @ParameterizedTest
     @ValueSource(strings = {"  ", ""})
     public void incorrectTitlePostTest(String input) {
-        int postUserId = GetDataHelper.getId("userPath", "id");
+        int postUserId = TestDataHelper.getId("userPath", "id");
 
-        Post newPost = DataHelper.createPost(postUserId);
+        Post newPost = PODJODataHelper.createPost(postUserId);
         newPost.setTitle(input);
         ApiWrapper.sendPostNegativeRequest(given()
                                 .pathParams("id", postUserId), ConfigurationReader.get("userIdPath")
@@ -34,9 +33,9 @@ public class NegativePostTest {
     @ParameterizedTest
     @ValueSource(strings = {"  ", ""})
     public void incorrectBodyPostTest(String input) {
-        int userId = GetDataHelper.getId("userPath", "id");
+        int userId = TestDataHelper.getId("userPath", "id");
 
-        Post newPost = DataHelper.createPost(userId);
+        Post newPost = PODJODataHelper.createPost(userId);
         newPost.setBody(input);
         ApiWrapper.sendPostNegativeRequest(given()
                                 .pathParams("id", userId), ConfigurationReader.get("userIdPath")
@@ -48,9 +47,9 @@ public class NegativePostTest {
 
     @Test
     public void createPostLessToken() {
-        int userId = GetDataHelper.getId("userPath", "id");
+        int userId = TestDataHelper.getId("userPath", "id");
 
-        Post newPost = DataHelper.createPost(userId);
+        Post newPost = PODJODataHelper.createPost(userId);
 
         ApiWrapper.sendPostWithoutAuthRequest(given()
                         .pathParams("id", userId), ConfigurationReader.get("userIdPath")

@@ -4,7 +4,7 @@ import io.restassured.response.Response;
 
 import static io.restassured.RestAssured.given;
 
-public class GetDataHelper {
+public class TestDataHelper {
 
     public static int getId(String endpoint, String nameId) {
 

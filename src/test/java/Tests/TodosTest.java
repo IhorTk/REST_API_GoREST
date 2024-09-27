@@ -3,13 +3,13 @@ package Tests;
 import PODJO.Todos;
 import Utils.ApiWrapper;
 import Utils.ConfigurationReader;
-import Utils.DataHelper;
+import Utils.PODJODataHelper;
 import io.restassured.response.Response;
 import org.junit.jupiter.api.Test;
 
 import static Utils.ApiWrapper.*;
-import static Utils.GetDataHelper.getId;
-import static Utils.GetDataHelper.getListId;
+import static Utils.TestDataHelper.getId;
+import static Utils.TestDataHelper.getListId;
 import static io.restassured.RestAssured.given;
 import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInClasspath;
 import static org.hamcrest.Matchers.hasSize;
@@ -34,7 +34,7 @@ public class TodosTest extends BaseTestCase {
 
         int userId = getId("userPath", "id");
 
-        Todos newTodo = DataHelper.createTodos(userId);
+        Todos newTodo = PODJODataHelper.createTodos(userId);
 
         Todos responseTodo =
                 ApiWrapper.sendPostRequest(
@@ -51,8 +51,8 @@ public class TodosTest extends BaseTestCase {
     public void renameToDosTest() {
         int toDoId = getId("toDosPath", "id");
 
-        String nameField = "title";
-        String valueField = "New ToDos";
+        String nameField = ConfigurationReader.get("toDosFieldName");
+        String valueField = ConfigurationReader.get("toDosFieldValue");
 
         sendPatchRequest(
                 given().pathParams("id", toDoId),
@@ -69,8 +69,8 @@ public class TodosTest extends BaseTestCase {
         int userId = response.jsonPath().getInt("[0]."+"user_id");
         int id = response.jsonPath().getInt("[0]."+"id");
 
-        Todos newTodos = DataHelper.createTodos(userId);
-        newTodos.setTitle("John_Doe");
+        Todos newTodos = PODJODataHelper.createTodos(userId);
+        newTodos.setTitle(ConfigurationReader.get("toDosTitle"));
         newTodos.setId(id);
         Todos actualTodos =
                 sendPutRequest(
@@ -84,8 +84,8 @@ public class TodosTest extends BaseTestCase {
 
     @Test
     public void getListToDosByParametersTest() {
-        String numPage = "5";
-        String countToDos = "40";
+        String numPage = ConfigurationReader.get("toDosNumPage");
+        String countToDos = ConfigurationReader.get("toDosCount");
 
         sendGetRequest(
                 given().pathParams("numPage",

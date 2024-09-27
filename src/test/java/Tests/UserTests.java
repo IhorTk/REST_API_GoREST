@@ -3,12 +3,12 @@ package Tests;
 import PODJO.User;
 import Utils.ApiWrapper;
 import Utils.ConfigurationReader;
-import Utils.DataHelper;
+import Utils.PODJODataHelper;
 
 import org.junit.jupiter.api.Test;
 
 import static Utils.ApiWrapper.*;
-import static Utils.GetDataHelper.getId;
+import static Utils.TestDataHelper.getId;
 import static io.restassured.RestAssured.given;
 import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInClasspath;
 import static org.hamcrest.Matchers.hasSize;
@@ -31,7 +31,7 @@ public class UserTests extends BaseTestCase {
     @Test
     public void createNewUserTest() {
 
-        User newUser = DataHelper.createUser();
+        User newUser = PODJODataHelper.createUser();
 
         User responseUser =
                 ApiWrapper.sendPostRequest(
@@ -46,8 +46,8 @@ public class UserTests extends BaseTestCase {
     public void renameUserTest() {
         int userId = getId("userPath", "id");
 
-        String nameField = "name";
-        String valueField = "John_Doe";
+        String nameField = ConfigurationReader.get("userFieldName");
+        String valueField = ConfigurationReader.get("userFieldValue");
 
         sendPatchRequest(
                 given().pathParams("id", userId),
@@ -62,8 +62,8 @@ public class UserTests extends BaseTestCase {
 
         int userId = getId("userPath", "id");
 
-        User newUser = DataHelper.createUser();
-        newUser.setName("John_Doe");
+        User newUser = PODJODataHelper.createUser();
+        newUser.setName(ConfigurationReader.get("userName"));
 
         User actualClient =
                 ApiWrapper.sendPutRequest(
@@ -85,8 +85,8 @@ public class UserTests extends BaseTestCase {
 
     @Test
     public void getListUsersByParametersTest() {
-        String numPage = "12";
-        String countUsers = "33";
+        String numPage = ConfigurationReader.get("userNumPage");
+        String countUsers = ConfigurationReader.get("userCount");
 
         sendGetRequest(
                 given().pathParams("numPage", numPage,

@@ -12,7 +12,7 @@ import java.time.format.DateTimeFormatter;
 import static java.time.LocalDateTime.now;
 
 
-public class DataHelper {
+public class PODJODataHelper {
     static Faker faker = new Faker();
 
     public static User createUser() {

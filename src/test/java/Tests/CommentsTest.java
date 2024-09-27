@@ -3,13 +3,13 @@ package Tests;
 import PODJO.Comment;
 import Utils.ApiWrapper;
 import Utils.ConfigurationReader;
-import Utils.GetDataHelper;
-import Utils.DataHelper;
+import Utils.TestDataHelper;
+import Utils.PODJODataHelper;
 import io.restassured.response.Response;
 import org.junit.jupiter.api.Test;
 
 import static Utils.ApiWrapper.*;
-import static Utils.GetDataHelper.getListId;
+import static Utils.TestDataHelper.getListId;
 import static io.restassured.RestAssured.given;
 import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInClasspath;
 import static org.hamcrest.Matchers.hasSize;
@@ -26,9 +26,9 @@ public class CommentsTest extends BaseTestCase {
 
     @Test
     public void createNewCommentForPostTest() {
-        int postId = GetDataHelper.getId("commentsPath", "post_id");
+        int postId = TestDataHelper.getId("commentsPath", "post_id");
 
-        Comment newComment = DataHelper.createComments(postId);
+        Comment newComment = PODJODataHelper.createComments(postId);
 
         Comment responseComment =
                 ApiWrapper.sendPostRequest(
@@ -42,8 +42,8 @@ public class CommentsTest extends BaseTestCase {
 
     @Test
     public void getListCommentsByParametersTest() {
-        String numPage = "5";
-        String countComments = "50";
+        String numPage = ConfigurationReader.get("commentNumPage");
+        String countComments = ConfigurationReader.get("commentCount");
 
         sendGetRequest(
                 given().pathParams("numPage",
@@ -57,10 +57,10 @@ public class CommentsTest extends BaseTestCase {
 
     @Test
     public void changeNameCommentTest() {
-        int postId = GetDataHelper.getId("commentsPath", "id");
+        int postId = TestDataHelper.getId("commentsPath", "id");
 
-        String nameField = "name";
-        String valueField = "JOHN_DOE";
+        String nameField = ConfigurationReader.get("commentFieldName");
+        String valueField = ConfigurationReader.get("commentFieldValue");
 
         sendPatchRequest(
                 given().pathParams("id", postId),
@@ -76,7 +76,7 @@ public class CommentsTest extends BaseTestCase {
         int id = response.jsonPath().getInt("[0]."+"id");
         int postId = response.jsonPath().getInt("[0]."+"post_id");
 
-        Comment comments = DataHelper.createComments(postId);
+        Comment comments = PODJODataHelper.createComments(postId);
         comments.setName("John_Doe");
 
         Comment responseComment =
@@ -92,7 +92,7 @@ public class CommentsTest extends BaseTestCase {
     @Test
     public void deleteCommentTest() {
 
-        int postId = GetDataHelper.getId("commentsPath", "id");
+        int postId = TestDataHelper.getId("commentsPath", "id");
 
         deleteRequest(given().pathParams("id", postId),
                 ConfigurationReader.get("commentsIdPath"));
