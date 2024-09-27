@@ -6,6 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="d2909f09-5314-4fa0-81db-822c2bd7f4fb" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/Tests/NegativeUserTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/Tests/NegativeUserTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/resources/paramGoRestTest.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/paramGoRestTest1.csv" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -43,37 +45,39 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;JUnit.CommentsTest.newCommentPostsCreation.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.NegativePostTest.incorrect.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.NegativePostTest.incorrectBodyPostTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.NegativePostTest.incorrectTitlePost.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.NegativePostTest.incorrectTitlePostTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.NegativeTest.incorrectUserName1.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.PostTest.newPostCreation.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.UserTests.createNewUserTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.UserTests.getId.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.UserTests.getUsers.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.UserTests.getUsers1.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.UserTests.getUsers2.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.UserTests.getUsersResponse.executor&quot;: &quot;Run&quot;,
-    &quot;Maven.REST_API_GoREST [clean].executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;D:/GIT/REST_API_GoREST/src/test/java/Tests&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "JUnit.CommentsTest.newCommentPostsCreation.executor": "Run",
+    "JUnit.NegativePostTest.incorrect.executor": "Run",
+    "JUnit.NegativePostTest.incorrectBodyPostTest.executor": "Run",
+    "JUnit.NegativePostTest.incorrectTitlePost.executor": "Run",
+    "JUnit.NegativePostTest.incorrectTitlePostTest.executor": "Run",
+    "JUnit.NegativeTest.incorrectUserName1.executor": "Run",
+    "JUnit.NegativeUserTest.incorrectUserNameTest.executor": "Run",
+    "JUnit.PostTest.newPostCreation.executor": "Run",
+    "JUnit.UserTests.createNewUserTest.executor": "Run",
+    "JUnit.UserTests.getId.executor": "Run",
+    "JUnit.UserTests.getUsers.executor": "Run",
+    "JUnit.UserTests.getUsers1.executor": "Run",
+    "JUnit.UserTests.getUsers2.executor": "Run",
+    "JUnit.UserTests.getUsersResponse.executor": "Run",
+    "Maven.REST_API_GoREST [clean].executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "main",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "D:/GIT/REST_API_GoREST/src/test/resources",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0",
+    "settings.editor.selected.configurable": "RainbowCSV.Settings"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\GIT\REST_API_GoREST\src\test\resources" />
       <recent name="D:\GIT\REST_API_GoREST\src\test\java\Tests" />
       <recent name="D:\GIT\REST_API_GoREST\src\test\java\Utils" />
       <recent name="D:\GIT\REST_API_GoREST\src\test\java\PODJO" />
-      <recent name="D:\GIT\REST_API_GoREST\src\test\resources" />
       <recent name="D:\GIT\REST_API_GoREST\src\main\resources" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
@@ -83,7 +87,7 @@
       <recent name="Utils" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.NegativePostTest.createPostLessToken">
+  <component name="RunManager" selected="JUnit.NegativeUserTest.incorrectUserNameTest">
     <configuration name="NegativePostTest.createPostLessToken" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="REST_API_GoREST" />
       <extension name="coverage">
@@ -132,22 +136,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="NegativePostTest.incorrectTitlePost" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="REST_API_GoREST" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="Tests.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="Tests" />
-      <option name="MAIN_CLASS_NAME" value="Tests.NegativePostTest" />
-      <option name="METHOD_NAME" value="incorrectTitlePost(java.lang.String)" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="NegativePostTest.incorrectTitlePostTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="REST_API_GoREST" />
       <extension name="coverage">
@@ -164,13 +152,29 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="NegativeUserTest.incorrectUserNameTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="REST_API_GoREST" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="Tests.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="Tests" />
+      <option name="MAIN_CLASS_NAME" value="Tests.NegativeUserTest" />
+      <option name="METHOD_NAME" value="incorrectUserNameTest(java.lang.String,java.lang.String,java.lang.String)" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.NegativeUserTest.incorrectUserNameTest" />
         <item itemvalue="JUnit.NegativePostTest.createPostLessToken" />
         <item itemvalue="JUnit.NegativePostTest.incorrectBodyPostTest" />
         <item itemvalue="JUnit.NegativePostTest.incorrectTitlePostTest" />
         <item itemvalue="JUnit.NegativePostTest.incorrect" />
-        <item itemvalue="JUnit.NegativePostTest.incorrectTitlePost" />
       </list>
     </recent_temporary>
   </component>

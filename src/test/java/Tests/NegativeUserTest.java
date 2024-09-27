@@ -6,6 +6,7 @@ import Utils.ConfigurationReader;
 import Utils.DataHelper;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvFileSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import static Utils.GetDataHelper.getVolume;
@@ -14,15 +15,15 @@ import static org.hamcrest.Matchers.equalTo;
 public class NegativeUserTest extends BaseTestCase {
 
     @ParameterizedTest
-//    @CsvFileSource (resources = "src/test/resources/paramGoRestTest.csv", numLinesToSkip = 1)
+//    @CsvFileSource(resources = "src/test/resources/paramGoRestTest.csv", numLinesToSkip = 1)
     @ValueSource(strings = {"  ", ""})
-    public void incorrectUserNameTest(String input) {
+    public void incorrectUserNameTest(String input,String field, String message) {
         User newUser = DataHelper.createUser();
         newUser.setName(input);
         ApiWrapper.sendPostNegativeRequest(ConfigurationReader.get("userPath"),
                 newUser)
-                .body("[0].field", equalTo("name"))
-                .body("[0].message", equalTo(ConfigurationReader.get("failName")));
+                .body("[0].field", equalTo(field))
+                .body("[0].message", equalTo(message));
     }
 
     @ParameterizedTest
